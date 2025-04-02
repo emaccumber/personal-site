@@ -1,14 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
-import AlbumSubNav from '@/components/AlbumSubNav';
 import PhotoView from '@/components/PhotoView';
 import { getAllPhotoAlbums, getPhotoAlbumBySlug } from '@/lib/api';
 
 export default function PhotoPage({ albums, album, photo, photoIndex, albumSlug }) {
-  const router = useRouter();
-  
   if (!album || !photo) {
     return <div>Photo not found</div>;
   }
@@ -42,7 +38,11 @@ export default function PhotoPage({ albums, album, photo, photoIndex, albumSlug 
         </nav>
       </header>
 
-      <AlbumSubNav albums={albums} currentAlbum={albumSlug} />
+      <div className={styles.backToAlbums}>
+        <Link href="/photographs">
+          &lt;&lt;&lt;
+        </Link>
+      </div>
 
       <main className={styles.photoPageMain}>
         <PhotoView
@@ -51,7 +51,7 @@ export default function PhotoPage({ albums, album, photo, photoIndex, albumSlug 
           photoIndex={photoIndex}
           totalPhotos={album.photos.length}
         />
-        
+
         {album.description && (
           <div className={styles.albumDescription}>
             {album.description}
@@ -65,26 +65,26 @@ export default function PhotoPage({ albums, album, photo, photoIndex, albumSlug 
 export async function getStaticProps({ params }) {
   const albums = getAllPhotoAlbums();
   const album = getPhotoAlbumBySlug(params.album);
-  
+
   if (!album) {
     return {
       notFound: true
     };
   }
-  
+
   const photoIndex = parseInt(params.photo, 10) - 1; // Convert from 1-based to 0-based
   const photo = album.photos[photoIndex];
-  
+
   if (!photo) {
     return {
       notFound: true
     };
   }
-  
+
   return {
-    props: { 
+    props: {
       albums,
-      album, 
+      album,
       photo,
       photoIndex,
       albumSlug: params.album // Pass the album slug from URL params
@@ -94,24 +94,24 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const albums = getAllPhotoAlbums();
-  
+
   const paths = [];
-  
+
   // Generate paths for each photo in each album
   albums.forEach(albumInfo => {
     const album = getPhotoAlbumBySlug(albumInfo.slug);
     if (album && album.photos) {
       album.photos.forEach((_, index) => {
         paths.push({
-          params: { 
-            album: albumInfo.slug, 
+          params: {
+            album: albumInfo.slug,
             photo: `${index + 1}` // Use 1-based indexing for URLs
           }
         });
       });
     }
   });
-  
+
   return {
     paths,
     fallback: false
