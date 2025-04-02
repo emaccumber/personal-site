@@ -6,41 +6,40 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>My Personal Site</title>
-        <meta name="description" content="Photography, videography, and blog" />
+        <title>Ethan MacCumber</title>
+        <meta name="description" content="Photography and films by Ethan MacCumber" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to My Personal Site
-        </h1>
-
-        <p className={styles.description}>
-          A showcase of photography, videography, and thoughts
-        </p>
-
-        <div className={styles.grid}>
-          <Link href="/photography" className={styles.card}>
-            <h2>Photography &rarr;</h2>
-            <p>View my photography portfolio</p>
-          </Link>
-
-          <Link href="/videography" className={styles.card}>
-            <h2>Videography &rarr;</h2>
-            <p>Watch my video projects</p>
-          </Link>
-
-          <Link href="/blog" className={styles.card}>
-            <h2>Blog &rarr;</h2>
-            <p>Read my latest thoughts</p>
+      <header className={styles.header}>
+        <div className={styles.nameContainer}>
+          <Link href="/" className={styles.name}>
+            Ethan MacCumber
           </Link>
         </div>
-      </main>
+        <nav className={styles.nav}>
+          <Link href="/photographs" className={styles.navLink}>
+            photographs
+          </Link>
+          <Link href="/films" className={styles.navLink}>
+            films
+          </Link>
+          <Link href="/information" className={styles.navLink}>
+            information
+          </Link>
+        </nav>
+      </header>
 
-      <footer className={styles.footer}>
-        <p>Created with speed and simplicity in mind</p>
-      </footer>
+      <main className={styles.main}>
+        {/* Main featured image */}
+        <div className={styles.featuredImageContainer}>
+          <img 
+            src="/images/featured.jpg"
+            alt="Featured photograph" 
+            className={styles.featuredImage}
+          />
+        </div>
+      </main>
     </div>
   )
 }

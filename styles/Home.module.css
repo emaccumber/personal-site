@@ -1,85 +1,120 @@
 .container {
     min-height: 100vh;
-    padding: 0 0.5rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .header {
+    display: flex;
+    padding: 20px;
     align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #eaeaea;
+    width: 100%;
+  }
+  
+  .nameContainer {
+    margin-right: 40px;
+  }
+  
+  .name {
+    font-size: 18px;
+    font-weight: normal;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navLink {
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .navLink:hover, .navLink.active {
+    opacity: 1;
   }
   
   .main {
-    padding: 4rem 0;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer {
     width: 100%;
-    height: 50px;
-    border-top: 1px solid #eaeaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   
-  .title {
-    margin: 0;
-    line-height: 1.15;
-    font-size: 3rem;
-    text-align: center;
+  .featuredImageContainer {
+    width: 100%;
+    height: calc(100vh - 70px); /* Subtract header height */
+    position: relative;
   }
   
-  .description {
-    text-align: center;
-    line-height: 1.5;
-    font-size: 1.5rem;
-    margin: 2rem 0;
+  .featuredImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
-  .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin-top: 3rem;
+  .galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
   }
   
-  .card {
-    margin: 1rem;
-    padding: 1.5rem;
-    text-align: left;
-    color: inherit;
+  .galleryItem {
     text-decoration: none;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    width: 300px;
+    color: inherit;
   }
   
-  .card:hover,
-  .card:focus,
-  .card:active {
-    color: #0070f3;
-    border-color: #0070f3;
+  .galleryImageContainer {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    margin-bottom: 10px;
   }
   
-  .card h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
+  .galleryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
-  .card p {
+  .galleryTitle {
+    font-size: 16px;
+    font-weight: normal;
     margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
   }
   
-  .date {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.5rem;
+  .contentContainer {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .bioContainer {
+    width: 100%;
+  }
+  
+  .bioTitle {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+  
+  .bioContent {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .bioContent p {
+    margin-bottom: 20px;
   }
