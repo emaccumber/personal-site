@@ -1,0 +1,129 @@
+.photoSlider,
+.photoSlider img {
+  height: 545px;
+  max-width: 806.22px;
+  object-fit: contain;
+}
+
+
+.photoSlider {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .photoSlider,
+  .photoSlider img {
+    height: 490px;
+    max-width: 606px;
+  }
+
+  /** START Fix mobile responsiveness */
+  .photoSlider.image,
+  .photoSlider.image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  /** END */
+}
+
+
+@media only screen and (max-width: 600px) {
+  .photoSlider,
+  .photoSlider img {
+    height: 390px;
+    max-width: 406px;
+  }
+
+  /** START Fix mobile responsiveness */
+  .photoSlider.image,
+  .photoSlider.image img {
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .photoSlider.image .slide {
+    height: 390px;
+  }
+
+  .photoSlider.image img {
+    height: auto;
+  }
+
+  .buttons.image {
+    margin-top: 15px;
+  }
+  /** END */
+}
+
+.photoSlider .slide {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide div {
+    max-width: calc(100vw - 20px);
+    /*max-height: 56.25vw;*/
+}
+
+.photoSlider .photoCaption {
+  font-size: 10.83px;
+}
+
+.buttons path {
+  fill: #555;
+}
+
+.buttons svg:hover path {
+  fill: #000;
+}
+
+.button {
+  padding: 0;
+  width: 50px;
+
+  font-size: 12px;
+
+  color: #555;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: black;
+}
+
+.button:disabled {
+  color: #aaa;
+  cursor: default;
+}
+
+/* fix hover animations changing button colours on mobile */
+@media only screen and (max-width: 600px) {
+  .button:hover {
+    color: #555;
+  }
+
+  .button:disabled {
+    color: #aaa;
+  }
+}
+
+
+.reactPlayer {
+  height: 500px;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .reactPlaye {
+    height: 250px;
+  }
+}
+
+.textContainer p {
+  font-size: 12px;
+}

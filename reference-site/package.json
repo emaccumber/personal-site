@@ -1,0 +1,26 @@
+{
+  "name": "ethan-maccumber",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "eslint-config-next": "^13.4.8",
+    "next": "^13.4.8",
+    "nprogress": "^0.2.0",
+    "react": "^18.2.0",
+    "react-device-detect": "^1.17.0",
+    "react-dom": "^18.2.0",
+    "react-player": "^2.9.0",
+    "react-vimeo-embed": "^0.9.0",
+    "sass": "^1.34.0",
+    "storyblok-js-client": "^4.0.6",
+    "storyblok-react": "^0.1.2",
+    "storyblok-rich-text-react-renderer": "^2.3.1",
+    "video-react": "^0.14.1"
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  width: 800px;
+  max-width: calc(100% + 34px);
+}
+
+.title {
+  font-size: 12px;
+}
+
+.textDesc {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+
+  color: #555;
+  font-size: 12px;
+}

@@ -1,0 +1,26 @@
+.menuLinkNotSelected {
+  margin-right: 30px;
+  font-size: 12px;
+  color: #555
+}
+.menuLinkNotSelected:hover {
+  color: black;
+}
+.menuLinkSelected {
+  margin-right: 30px;
+  font-size: 12px;
+  color: black;
+}
+
+.menuLinkTitle {
+  margin-right: 30px;
+  font-size: 16px;
+  color: black;
+}
+
+/*fix overflow*/
+.menuLinkNotSelected:last-child,
+.menuLinkSelected:last-child,
+.menuLinkTitle:last-child {
+  margin-right: 5px;
+}

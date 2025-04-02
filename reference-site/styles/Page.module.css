@@ -1,0 +1,181 @@
+.header {
+  /* display: flex;
+  color: #555;
+  justify-content: center; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  text-align: left;
+  width: 800px;
+  padding: 3px;
+  color: #555;
+
+}
+@media only screen and (max-width: 800px) {
+  .header {
+    display: flex;
+    color: #555;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    text-align: left;
+    width: auto;
+    padding: 3px;
+  }
+
+}
+
+
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+  padding-top: 65px;
+  padding-bottom: 50px;
+}
+
+.albumsMain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  padding: 0 20px;
+  padding-top: 65px;
+  max-width: 740px;
+}
+
+
+
+.albumsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 750px;
+  margin: -25px;
+}
+
+.photoAlbum {
+  display: flex;
+
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin: 25px;
+  width: 200px;
+  height: 177px;
+}
+
+.photoAlbum img {
+  object-fit: contain;
+  margin-bottom: 7px;
+  max-width: 100%;
+  height: calc(177px - 26px);
+}
+
+.photoAlbum a:hover,
+.photoAlbum a:hover + a {
+  color: black;
+}
+.photoAlbum a {
+  color: #555;
+}
+
+.colorForVideoTitle {
+  color: #555;
+}
+.colorForVideoTitle:hover {
+  color: black
+}
+
+.photoAlbum a {
+  font-size: 12px;
+}
+
+
+
+
+
+.PhotographPage {
+  /*margin-right: 270px;*/
+  margin-left: -30px;
+}
+
+@media only screen and (max-width: 794px) {
+  .PhotographPage{
+    margin-left: 0;
+    margin-right: calc(270px - 30px);
+  }
+}
+
+
+@media only screen and (max-width: 764px) {
+  .PhotographPage{
+    margin-right: calc(230px - 10px);;
+  }
+}
+
+
+@media only screen and (max-width: 754px) {
+  .PhotographPage{
+    margin-right: calc(230px - 20px);;
+  }
+}
+
+@media only screen and (max-width: 744px) {
+  .PhotographPage{
+    margin-right: calc(230px - 30px);;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .PhotographPage{
+    margin-right: calc(230px - 40px);;
+  }
+}
+
+
+@media only screen and (max-width: 724px) {
+  .PhotographPage{
+    margin-right: calc(230px - 40px);;
+  }
+}
+
+@media only screen and (max-width: 714px) {
+  .PhotographPage{
+    margin-right: calc(230px - 50px);;
+  }
+}
+
+@media only screen and (max-width: 704px) {
+  .PhotographPage{
+    margin-right: calc(230px - 60px);;
+  }
+}
+@media only screen and (max-width: 694px) {
+  .PhotographPage{
+    margin-right: calc(230px - 80px);;
+  }
+}
+@media only screen and (max-width: 684px) {
+  .PhotographPage{
+    margin-right: calc(230px - 80px);;
+  }
+}
+
+
+@media only screen and (max-width: 674px) {
+  .PhotographPage{
+    margin-right: calc(230px - 150px);;
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+  .PhotographPage{
+    margin-right: 15px;
+  }
+}
