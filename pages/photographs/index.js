@@ -1,22 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import { getAllPhotoAlbums } from '@/lib/api';
 
-export default function Photographs() {
-  // This would later be fetched from your content directory
-  const collections = [
-    {
-      slug: 'nature',
-      title: 'Nature Photography',
-      coverImage: '/images/nature-cover.jpg'
-    },
-    {
-      slug: 'urban',
-      title: 'Urban Photography',
-      coverImage: '/images/urban-cover.jpg'
-    }
-  ];
-
+export default function Photographs({ albums }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -44,23 +31,30 @@ export default function Photographs() {
       </header>
 
       <main className={styles.galleryContainer}>
-        {collections.map((collection) => (
+        {albums.map((album) => (
           <Link 
-            href={`/photographs/${collection.slug}`} 
-            key={collection.slug} 
+            href={`/photographs/${album.slug}`} 
+            key={album.id} 
             className={styles.galleryItem}
           >
             <div className={styles.galleryImageContainer}>
               <img 
-                src={collection.coverImage} 
-                alt={collection.title} 
+                src={album.coverImage} 
+                alt={album.title} 
                 className={styles.galleryImage}
               />
             </div>
-            <h2 className={styles.galleryTitle}>{collection.title}</h2>
+            <h2 className={styles.galleryTitle}>{album.title}</h2>
           </Link>
         ))}
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const albums = getAllPhotoAlbums();
+  return {
+    props: { albums }
+  };
 }

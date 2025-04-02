@@ -1,0 +1,57 @@
+.photoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .photoWrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .photo {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .caption {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  
+  .navigation {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .navButton {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .navButton:hover:not(.disabled) {
+    background-color: #e0e0e0;
+  }
+  
+  .navButton.disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+  
+  .description {
+    margin-top: 20px;
+    line-height: 1.6;
+  }
