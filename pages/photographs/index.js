@@ -24,6 +24,9 @@ export default function Photographs({ albums }) {
           <Link href="/films" className={styles.navLink}>
             films
           </Link>
+          <Link href="/writing" className={styles.navLink}>
+            writing
+          </Link>
           <Link href="/information" className={styles.navLink}>
             information
           </Link>

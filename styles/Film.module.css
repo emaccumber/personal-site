@@ -1,0 +1,44 @@
+.filmPageMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.filmInfo {
+  margin-top: 20px;
+  max-width: 800px;
+}
+
+.filmTitle {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0 0 15px 0;
+}
+
+.filmDirector {
+  font-size: 18px;
+  margin: 0 0 5px 0;
+}
+
+.filmMaker {
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+
+.filmDate {
+  font-size: 16px;
+  margin: 0 0 20px 0;
+}
+
+.filmDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.filmDescription p {
+  margin-bottom: 15px;
+}

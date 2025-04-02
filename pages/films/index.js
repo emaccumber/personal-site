@@ -1,22 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import { getAllFilms } from '@/lib/api';
 
-export default function Films() {
-  // This would later be fetched from your content directory
-  const films = [
-    {
-      slug: 'documentary',
-      title: 'Short Documentary',
-      coverImage: '/images/documentary-cover.jpg'
-    },
-    {
-      slug: 'travel',
-      title: 'Travel Montage',
-      coverImage: '/images/travel-cover.jpg'
-    }
-  ];
-
+export default function Films({ films }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -37,6 +24,9 @@ export default function Films() {
           <Link href="/films" className={`${styles.navLink} ${styles.active}`}>
             films
           </Link>
+          <Link href="/writing" className={styles.navLink}>
+            writing
+          </Link>
           <Link href="/information" className={styles.navLink}>
             information
           </Link>
@@ -45,15 +35,15 @@ export default function Films() {
 
       <main className={styles.galleryContainer}>
         {films.map((film) => (
-          <Link 
-            href={`/films/${film.slug}`} 
-            key={film.slug} 
+          <Link
+            href={`/films/${film.slug}`}
+            key={film.id}
             className={styles.galleryItem}
           >
             <div className={styles.galleryImageContainer}>
-              <img 
-                src={film.coverImage} 
-                alt={film.title} 
+              <img
+                src={film.coverImage}
+                alt={film.title}
                 className={styles.galleryImage}
               />
             </div>
@@ -63,4 +53,11 @@ export default function Films() {
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const films = getAllFilms();
+  return {
+    props: { films }
+  };
 }

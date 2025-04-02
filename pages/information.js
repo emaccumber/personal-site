@@ -23,6 +23,9 @@ export default function Information() {
           <Link href="/films" className={styles.navLink}>
             films
           </Link>
+          <Link href="/writing" className={styles.navLink}>
+            writing
+          </Link>
           <Link href="/information" className={`${styles.navLink} ${styles.active}`}>
             information
           </Link>
