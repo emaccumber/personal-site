@@ -1,1 +1,32 @@
-{\n  \"films\": [\n    {\n      \"id\": \"months-at-home\",\n      \"title\": \"Months at Home\",\n      \"slug\": \"months-at-home\",\n      \"description\": \"A documentary about life during lockdown\",\n      \"coverImage\": \"/images/films/months-at-home/cover.jpg\"\n    },\n    {\n      \"id\": \"lakeview-hyde-park\",\n      \"title\": \"Lakeview / Hyde Park\",\n      \"slug\": \"lakeview-hyde-park\",\n      \"description\": \"A visual journey through Chicago neighborhoods\",\n      \"coverImage\": \"/images/films/lakeview-hyde-park/cover.jpg\"\n    },\n    {\n      \"id\": \"open-circuit-short-circuit\",\n      \"title\": \"Open Circuit Short Circuit\",\n      \"slug\": \"open-circuit-short-circuit\",\n      \"description\": \"\\\"open circuit and short circuit test 断路以及短路测试\\\" by Liang-Jung Chen\",\n      \"coverImage\": \"/images/films/open-circuit-short-circuit/cover.jpg\"\n    },\n    {\n      \"id\": \"to-make-matters-worse\",\n      \"title\": \"To Make Matters Worse\",\n      \"slug\": \"to-make-matters-worse\",\n      \"description\": \"An experimental short film\",\n      \"coverImage\": \"/images/films/to-make-matters-worse/cover.jpg\"\n    }\n  ]\n}
+{
+    "films": [
+      {
+        "id": "months-at-home",
+        "title": "Months at Home",
+        "slug": "months-at-home",
+        "description": "A documentary about life during lockdown",
+        "coverImage": "/images/films/months-at-home/cover.jpg"
+      },
+      {
+        "id": "lakeview-hyde-park",
+        "title": "Lakeview / Hyde Park",
+        "slug": "lakeview-hyde-park",
+        "description": "A visual journey through Chicago neighborhoods",
+        "coverImage": "/images/films/lakeview-hyde-park/cover.jpg"
+      },
+      {
+        "id": "open-circuit-short-circuit",
+        "title": "Open Circuit Short Circuit",
+        "slug": "open-circuit-short-circuit",
+        "description": "\"open circuit and short circuit test 断路以及短路测试\" by Liang-Jung Chen",
+        "coverImage": "/images/films/open-circuit-short-circuit/cover.jpg"
+      },
+      {
+        "id": "to-make-matters-worse",
+        "title": "To Make Matters Worse",
+        "slug": "to-make-matters-worse",
+        "description": "An experimental short film",
+        "coverImage": "/images/films/to-make-matters-worse/cover.jpg"
+      }
+    ]
+  }
