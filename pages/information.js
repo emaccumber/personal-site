@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import { getInformationContent } from '@/lib/api';
 
-export default function Information() {
+export default function Information({ title, contentHtml }) {
+  console.log('Rendering Information page with props:', { title, contentHtml });
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -34,22 +37,48 @@ export default function Information() {
 
       <main className={styles.contentContainer}>
         <div className={styles.bioContainer}>
-          <h1 className={styles.bioTitle}>About Ethan MacCumber</h1>
-          <div className={styles.bioContent}>
-            <p>
-              I am a photographer and filmmaker based in [Your Location]. My work focuses on [your focus/style/interests].
-            </p>
-            <p>
-              [Add more about your background, approach, and interests]
-            </p>
-            <h2>Contact</h2>
-            <p>
-              Email: <a href="mailto:your.email@example.com">your.email@example.com</a><br />
-              Instagram: <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer">@yourusername</a>
-            </p>
-          </div>
+          <h1 className={styles.bioTitle}>{title}</h1>
+          <div 
+            className={styles.bioContent}
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
         </div>
       </main>
     </div>
   );
+}
+
+export function getStaticProps() {
+  try {
+    console.log('Fetching information content...');
+    // Remove await since we changed getInformationContent to be synchronous
+    const informationContent = getInformationContent();
+    console.log('Received information content:', informationContent);
+    
+    // Explicitly check for returned data
+    if (!informationContent) {
+      console.error('No content returned from getInformationContent');
+      return {
+        props: {
+          title: 'About Ethan MacCumber',
+          contentHtml: '<p>Content could not be loaded.</p>'
+        }
+      };
+    }
+    
+    return {
+      props: {
+        title: informationContent.title || 'About Ethan MacCumber',
+        contentHtml: informationContent.contentHtml || '<p>Content could not be loaded.</p>'
+      }
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps for information page:', error);
+    return {
+      props: {
+        title: 'About Ethan MacCumber',
+        contentHtml: '<p>An error occurred while loading the content.</p>'
+      }
+    };
+  }
 }
