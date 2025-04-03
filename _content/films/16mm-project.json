@@ -1,0 +1,13 @@
+{
+    "title": "Your Album Title",
+    "description": "A detailed description of this collection of clips.",
+    "date": "2024",
+    "clips": [
+      {
+        "id": 1,
+        "src": "/videos/films/16mm-project/clip1.mp4",
+        "caption": "Location or title, Year",
+        "description": "Description of this specific clip."
+      }
+    ]
+  }
