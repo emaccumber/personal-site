@@ -51,7 +51,6 @@ export default function FilmPage({ films, film, filmSlug }) {
     </div>
   );
 }
-}
 
 export async function getStaticProps({ params }) {
   const films = getAllFilms();
