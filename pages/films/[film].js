@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import filmStyles from '@/styles/Film.module.css';
-import VimeoPlayer from '@/components/VimeoPlayer';
+import FilmRenderer from '@/components/FilmRenderer';
 import { getAllFilms, getFilmBySlug } from '@/lib/api';
 
 export default function FilmPage({ films, film, filmSlug }) {
@@ -46,25 +46,7 @@ export default function FilmPage({ films, film, filmSlug }) {
       </div>
 
       <main className={filmStyles.filmPageMain}>
-        <VimeoPlayer vimeoId={film.vimeoId} />
-
-        <div className={filmStyles.filmInfo}>
-          {film.subtitle && <h1 className={filmStyles.filmTitle}>{film.subtitle}</h1>}
-
-          {film.director && <p className={filmStyles.filmDirector}>{film.director}</p>}
-
-          {film.filmmaker && <p className={filmStyles.filmMaker}>{film.filmmaker}</p>}
-
-          {film.date && <p className={filmStyles.filmDate}>{film.date}</p>}
-
-          {film.description && (
-            <div className={filmStyles.filmDescription}>
-              {film.description.split('\n\n').map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
-          )}
-        </div>
+        <FilmRenderer film={film} />
       </main>
     </div>
   );

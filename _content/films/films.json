@@ -27,6 +27,14 @@
         "slug": "to-make-matters-worse",
         "description": "An experimental short film",
         "coverImage": "/images/films/to-make-matters-worse/cover.jpg"
+      },
+      {
+        "id": "16mm-project",
+        "title": "16mm Film Sketches",
+        "slug": "16mm-project",
+        "description": "Brief description of your album",
+        "coverImage": "/images/films/16mm-project/cover.jpg",
+        "type": "moving-image-album"
       }
     ]
   }

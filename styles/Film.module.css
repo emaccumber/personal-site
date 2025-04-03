@@ -42,3 +42,49 @@
 .filmDescription p {
   margin-bottom: 15px;
 }
+
+/* Moving Image Album Styles */
+.movingImageContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.clipNavigation {
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+  padding-top: 20px;
+}
+
+.clipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.clipButton {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.clipButton:hover {
+  background-color: #f6f6f6;
+}
+
+.clipButton.activeClip {
+  background-color: #eaeaea;
+  border-color: #ccc;
+  font-weight: bold;
+}
+
+.filmError {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}

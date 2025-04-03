@@ -1,0 +1,166 @@
+.clipContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+.clipWrapper {
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  cursor: default;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.videoLoading {
+  opacity: 0;
+}
+
+.videoReady {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loadingIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #333;
+  z-index: 2;
+}
+
+.clipOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  cursor: default;
+}
+
+.clipOverlay.clickable {
+  cursor: pointer;
+}
+
+.playPauseButton {
+  position: static;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.playPauseButton:hover {
+  opacity: 0.8;
+}
+
+.playPauseButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.playIcon, .pauseIcon {
+  width: 24px;
+  height: 24px;
+  fill: black;
+}
+
+.scrubIndicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.scrubIndicator.active {
+  opacity: 1;
+}
+
+.bottomContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.caption {
+  margin: 0;
+  text-align: right;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+.arrowNavigation {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none; /* This makes the container not intercept clicks */
+  z-index: 10;
+}
+
+.navArrow {
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+  padding: 20px;
+  cursor: pointer;
+  pointer-events: auto; /* This allows the arrows to be clickable */
+  background: none;
+  border: none;
+}
+
+.leftArrow {
+  margin-left: 10px;
+}
+
+.rightArrow {
+  margin-right: 10px;
+}
+
+.navArrow.disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.description {
+  margin-top: 20px;
+  line-height: 1.6;
+}
