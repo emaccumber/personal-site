@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
 
 export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos }) {
+  const router = useRouter();
   const isFirst = photoIndex === 0;
   const isLast = photoIndex === totalPhotos - 1;
-
+  
   const prevLink = isFirst ? '#' : `/photographs/${albumSlug}/${photoIndex}`;
   const nextLink = isLast ? '#' : `/photographs/${albumSlug}/${photoIndex + 2}`; // +2 because we're using 1-based indexing in URLs
+
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Right arrow key navigates to next photo
+      if (e.key === 'ArrowRight' && !isLast) {
+        router.push(nextLink);
+      }
+      // Left arrow key navigates to previous photo
+      else if (e.key === 'ArrowLeft' && !isFirst) {
+        router.push(prevLink);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFirst, isLast, nextLink, prevLink, router]);
+
+  const handlePhotoClick = () => {
+    if (!isLast) {
+      router.push(nextLink);
+    }
+  };
 
   return (
     <div className={styles.photoContainer}>
@@ -15,7 +40,8 @@ export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos })
         <img
           src={photo.src}
           alt={photo.caption || 'Photograph'}
-          className={styles.photo}
+          className={`${styles.photo} ${!isLast ? styles.clickable : ''}`}
+          onClick={handlePhotoClick}
         />
         {photo.caption && (
           <div className={styles.caption}>
