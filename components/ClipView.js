@@ -107,35 +107,35 @@ export default function ClipView({
   // Mouse movement handler for frame-by-frame scrubbing
   const handleMouseMove = (e) => {
     if (!videoRef.current || isPlaying || !isMouseInteracting || !isVideoReady) return;
-    
+
     const video = videoRef.current;
     if (!video) return;
-    
+
     // Calculate distance moved (absolute value for any movement)
     const currentX = e.clientX;
     const currentY = e.clientY;
     const prevX = lastMouseXRef.current.x;
     const prevY = lastMouseXRef.current.y;
-    
+
     // Calculate total movement using Pythagorean theorem
     const deltaX = currentX - prevX;
     const deltaY = currentY - prevY;
     const movement = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    
+
     if (movement > 0 && !hasReachedEnd) {
       // Accumulate total movement
       totalMovementRef.current += movement;
-      
+
       // Calculate what fraction of the video we should have progressed through
       const videoDuration = videoLengthRef.current;
-      
-      // We want to go through the entire clip with about 2000px of movement
-      const totalRequiredMovement = 3000;
+
+      // We want to go through the entire clip with more movement for slower frame changes
+      const totalRequiredMovement = 5000;
       const progress = Math.min(totalMovementRef.current / totalRequiredMovement, 1.0);
-      
+
       // Set absolute time position rather than incrementing
       const newTime = progress * videoDuration;
-      
+
       if (newTime >= videoDuration) {
         // We've reached the end
         video.currentTime = videoDuration;
@@ -145,18 +145,26 @@ export default function ClipView({
         video.currentTime = newTime;
       }
     }
-    
+
     // Store current position for next calculation
     lastMouseXRef.current = { x: currentX, y: currentY };
   };
 
   const handleMouseEnter = (e) => {
     if (!videoRef.current || isPlaying || !isVideoReady) return;
-    
+
     // Initialize mouse tracking
     setIsMouseInteracting(true);
-    totalMovementRef.current = 0;
     
+    // Calculate totalMovementRef based on current video position
+    // This ensures scrubbing continues from where playback stopped
+    if (videoRef.current.currentTime > 0) {
+      const videoDuration = videoLengthRef.current;
+      const totalRequiredMovement = 5000;
+      const currentProgress = videoRef.current.currentTime / videoDuration;
+      totalMovementRef.current = currentProgress * totalRequiredMovement;
+    }
+
     // Initialize with current mouse position
     lastMouseXRef.current = { x: e.clientX, y: e.clientY };
   };
@@ -167,9 +175,9 @@ export default function ClipView({
 
   const togglePlayPause = () => {
     if (!videoRef.current || !isVideoReady) return;
-    
+
     const video = videoRef.current;
-    
+
     if (isPlaying) {
       // If currently playing, just pause
       video.pause();
@@ -181,7 +189,7 @@ export default function ClipView({
         setHasReachedEnd(false);
         totalMovementRef.current = 0;
       }
-      
+
       // Start playing from current position
       video.play()
         .then(() => {
@@ -210,7 +218,7 @@ export default function ClipView({
               <span>Loading clip...</span>
             </div>
           )}
-          
+
           <video
             ref={videoRef}
             className={`${styles.video} ${isVideoReady ? styles.videoReady : styles.videoLoading}`}
@@ -219,42 +227,38 @@ export default function ClipView({
             preload="auto"
             onClick={(e) => e.stopPropagation()}
           />
-          
+
           <div className={styles.clipOverlay}></div>
-          
-          {!isPlaying && isVideoReady && (
-            <div className={`${styles.scrubIndicator} ${isMouseInteracting && !hasReachedEnd ? styles.active : ''}`}>
-              <span>Move cursor to scrub through clip</span>
+        </div>
+
+        <div className={styles.bottomContent}>
+          <button
+            className={`${styles.playPauseButton} ${isVideoReady ? '' : styles.disabled}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              togglePlayPause();
+            }}
+            aria-label={isPlaying ? "Pause" : "Play"}
+            disabled={!isVideoReady}
+          >
+            {isPlaying ? (
+              <svg className={styles.pauseIcon} viewBox="0 0 24 24">
+                <rect x="6" y="4" width="4" height="16" />
+                <rect x="14" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg className={styles.playIcon} viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21" />
+              </svg>
+            )}
+          </button>
+
+          {clip.caption && (
+            <div className={styles.caption}>
+              {clip.caption}
             </div>
           )}
         </div>
-        
-        <button 
-          className={`${styles.playPauseButton} ${isVideoReady ? '' : styles.disabled}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            togglePlayPause();
-          }}
-          aria-label={isPlaying ? "Pause" : "Play"}
-          disabled={!isVideoReady}
-        >
-          {isPlaying ? (
-            <svg className={styles.pauseIcon} viewBox="0 0 24 24">
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            <svg className={styles.playIcon} viewBox="0 0 24 24">
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-          )}
-        </button>
-        
-        {clip.caption && (
-          <div className={styles.caption}>
-            {clip.caption}
-          </div>
-        )}
       </div>
 
       <div className={styles.arrowNavigation}>
