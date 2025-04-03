@@ -41,6 +41,12 @@ export default function Post({ post }) {
         </nav>
       </header>
 
+      <div className={styles.backToAlbums}>
+        <Link href="/writing">
+          &lt;&lt;&lt;
+        </Link>
+      </div>
+
       <main className={writingStyles.postContainer}>
         <article className={writingStyles.post}>
           <header className={writingStyles.postHeader}>
@@ -53,12 +59,6 @@ export default function Post({ post }) {
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         </article>
-
-        <div className={writingStyles.postFooter}>
-          <Link href="/writing" className={writingStyles.backLink}>
-            ← Back to writing
-          </Link>
-        </div>
       </main>
     </div>
   );
