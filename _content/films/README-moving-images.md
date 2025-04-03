@@ -33,14 +33,12 @@ This is a special type of film content that displays short video clips in an alb
     {
       "id": 1,
       "src": "/videos/films/16mm-project/clip1.mp4",
-      "poster": "/images/films/16mm-project/clip1.jpg",
       "caption": "Utah Desert, 2024",
       "description": "Windswept sand patterns at dusk in the Utah desert."
     },
     {
       "id": 2,
       "src": "/videos/films/16mm-project/clip2.mp4",
-      "poster": "/images/films/16mm-project/clip2.jpg",
       "caption": "New Mexico, 2024",
       "description": "Distant storm clouds forming over mesa landscape."
     }
@@ -50,9 +48,26 @@ This is a special type of film content that displays short video clips in an alb
 
 3. Add your video clips to `/public/videos/films/[album-slug]/` (e.g., `/public/videos/films/16mm-project/clip1.mp4`)
 
-4. Add poster images (thumbnails shown before video playback) to `/public/images/films/[album-slug]/` (e.g., `/public/images/films/16mm-project/clip1.jpg`)
+4. Add a cover image for the album listing to `/public/images/films/[album-slug]/cover.jpg`
 
-5. Add a cover image for the album listing to `/public/images/films/[album-slug]/cover.jpg`
+## Features
+
+These moving image albums include several interactive features:
+
+1. **Frame-by-Frame Scrubbing**: Move your mouse from left to right over the video to advance through the clip frame by frame.
+
+2. **Smart Playback**: The play button starts playback from wherever you've scrubbed to, and is the only way to restart a clip after it ends.
+
+3. **First-Frame Previews**: No need to create separate poster images - the component automatically displays the first frame of each video.
+
+4. **Keyboard Navigation**: Use left/right arrow keys to navigate between clips and spacebar to play/pause.
+
+## User Interaction
+
+- **Scrubbing through frames**: Move your mouse from left to right over the clip when it's not playing
+- **Play/Pause**: Click the play button to start playback from the current frame
+- **Navigate between clips**: Click the arrow buttons or use left/right arrow keys
+- **Select specific clips**: Use the numbered clip buttons below the video
 
 ## Recommended Video Format
 
@@ -61,3 +76,19 @@ For the best performance, use the following specifications for your video clips:
 - Resolution: 720p or 1080p
 - Duration: Short clips (around 10 seconds)
 - File size: Optimize for web (typically under 5MB per clip)
+
+## Directory Structure
+
+```
+public/
+  ├── videos/
+  │   └── films/
+  │       └── [album-slug]/
+  │           ├── clip1.mp4
+  │           ├── clip2.mp4
+  │           └── clip3.mp4
+  └── images/
+      └── films/
+          └── [album-slug]/
+              └── cover.jpg  (for album listing)
+```

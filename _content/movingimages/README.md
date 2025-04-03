@@ -1,55 +1,49 @@
-# Moving Images Content
+# DEPRECATED - Moving Images Content
 
-This directory should contain JSON files for your moving image albums.
+Moving images have been integrated into the films section. 
 
-## File Structure
+Please refer to the updated documentation in:
+`/Users/ethan/Desktop/repos.nosync/personal-site/_content/films/README-moving-images.md`
 
-### albums.json
-This file lists all your moving image albums.
+The moving image albums are now implemented as a special type of film with the following advantages:
+- No need for separate poster images (automatically uses first frame of video)
+- Frame-by-frame scrubbing through clips
+- Integrated with the existing films section
 
-```json
-{
-  "albums": [
-    {
-      "slug": "16mm-project",
-      "title": "16mm Film Sketches",
-      "description": "A collection of short clips captured on 16mm film",
-      "coverImage": "/images/movingimages/16mm-project/cover.jpg",
-      "featured": true
-    }
-  ]
-}
+## Directory Structure
+
+Moving image content has been moved to:
+
+```
+public/
+  ├── videos/
+  │   └── films/        (previously movingimages)
+  │       └── [album-slug]/
+  │           ├── clip1.mp4
+  │           ├── clip2.mp4
+  │           └── clip3.mp4
+  └── images/
+      └── films/        (previously movingimages)
+          └── [album-slug]/
+              └── cover.jpg  (only need album cover image, not individual clip posters)
 ```
 
-### Individual Album Files (e.g., 16mm-project.json)
-Each album should have its own JSON file with clip details:
+## JSON Format
+
+The JSON format has been simplified to remove the poster requirement:
 
 ```json
 {
   "title": "16mm Film Sketches",
   "description": "A collection of short clips captured on 16mm film during travels across the American West.",
+  "date": "2024",
   "clips": [
     {
       "id": 1,
-      "src": "/videos/movingimages/16mm-project/clip1.mp4",
-      "poster": "/images/movingimages/16mm-project/clip1.jpg",
+      "src": "/videos/films/16mm-project/clip1.mp4",
       "caption": "Utah Desert, 2024",
       "description": "Windswept sand patterns at dusk in the Utah desert."
-    },
-    {
-      "id": 2,
-      "src": "/videos/movingimages/16mm-project/clip2.mp4",
-      "poster": "/images/movingimages/16mm-project/clip2.jpg",
-      "caption": "New Mexico, 2024",
-      "description": "Distant storm clouds forming over mesa landscape."
     }
   ]
 }
 ```
-
-## Media Files
-Store your actual video files in:
-- `/public/videos/movingimages/[album-slug]/`
-
-And your poster images in:
-- `/public/images/movingimages/[album-slug]/`
