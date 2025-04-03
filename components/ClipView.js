@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/ClipView.module.css';
 
-export default function ClipView({ 
-  clip, 
-  clipIndex, 
+export default function ClipView({
+  clip,
+  clipIndex,
   totalClips,
   onNextClip,
   onPrevClip
@@ -15,9 +15,10 @@ export default function ClipView({
   const [isMouseInteracting, setIsMouseInteracting] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const mouseMovementRef = useRef(0);
-  const lastMouseXRef = useRef(0);
+  const lastMouseXRef = useRef({ x: 0, y: 0 });
   const videoLengthRef = useRef(0);
-  
+  const totalMovementRef = useRef(0);
+
   const isFirst = clipIndex === 0;
   const isLast = clipIndex === totalClips - 1;
 
@@ -30,27 +31,34 @@ export default function ClipView({
     setIsVideoReady(false);
     setHasReachedEnd(false);
     setIsPlaying(false);
-    
+    totalMovementRef.current = 0;
+
+    // Ensure we start at the beginning
+    if (video.readyState >= 2) {
+      video.currentTime = 0;
+    }
+
     const handleLoadedMetadata = () => {
       videoLengthRef.current = video.duration;
       // Set first frame as poster by seeking to time 0
       video.currentTime = 0;
     };
-    
+
     const handleLoadedData = () => {
-      // Once data is loaded and currentTime has been set to 0, 
+      // Once data is loaded and currentTime has been set to 0,
       // the video should be showing its first frame
+      video.currentTime = 0;
       setIsVideoReady(true);
     };
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
     video.addEventListener('loadeddata', handleLoadedData);
-    
+
     return () => {
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       video.removeEventListener('loadeddata', handleLoadedData);
     };
-  }, [clip]);
+  }, [clip.src]); // Dependency on clip.src to ensure it reloads when the source changes
 
   // Handle video end
   useEffect(() => {
@@ -101,58 +109,60 @@ export default function ClipView({
     if (!videoRef.current || isPlaying || !isMouseInteracting || !isVideoReady) return;
     
     const video = videoRef.current;
-    const container = containerRef.current;
-    if (!container) return;
+    if (!video) return;
     
-    // Calculate distance moved
+    // Calculate distance moved (absolute value for any movement)
     const currentX = e.clientX;
-    const deltaX = currentX - lastMouseXRef.current;
+    const currentY = e.clientY;
+    const prevX = lastMouseXRef.current.x;
+    const prevY = lastMouseXRef.current.y;
     
-    // Only advance on right movement
-    if (deltaX > 0 && !hasReachedEnd) {
-      // Calculate sensitivity - how many pixels to move for one frame
-      // Assuming ~30fps video, we want to move through the entire video in about 300-500px of horizontal movement
-      const frameDuration = 1/30; // Approximate duration of one frame at 30fps
+    // Calculate total movement using Pythagorean theorem
+    const deltaX = currentX - prevX;
+    const deltaY = currentY - prevY;
+    const movement = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    
+    if (movement > 0 && !hasReachedEnd) {
+      // Accumulate total movement
+      totalMovementRef.current += movement;
+      
+      // Calculate what fraction of the video we should have progressed through
       const videoDuration = videoLengthRef.current;
-      const totalFrames = videoDuration / frameDuration;
-      const sensitivity = 300 / totalFrames; // Adjust this for slower/faster scrubbing
       
-      // Calculate how much to advance
-      const advanceAmount = (deltaX * sensitivity) / videoDuration;
+      // We want to go through the entire clip with about 2000px of movement
+      const totalRequiredMovement = 3000;
+      const progress = Math.min(totalMovementRef.current / totalRequiredMovement, 1.0);
       
-      if (video.currentTime + advanceAmount >= video.duration) {
+      // Set absolute time position rather than incrementing
+      const newTime = progress * videoDuration;
+      
+      if (newTime >= videoDuration) {
         // We've reached the end
-        video.currentTime = video.duration;
+        video.currentTime = videoDuration;
         setHasReachedEnd(true);
       } else {
-        // Advance by calculated amount
-        video.currentTime += advanceAmount;
+        // Set to calculated absolute position
+        video.currentTime = newTime;
       }
     }
     
-    lastMouseXRef.current = currentX;
+    // Store current position for next calculation
+    lastMouseXRef.current = { x: currentX, y: currentY };
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
     if (!videoRef.current || isPlaying || !isVideoReady) return;
     
     // Initialize mouse tracking
     setIsMouseInteracting(true);
-    lastMouseXRef.current = 0; // Reset mouse position tracking
+    totalMovementRef.current = 0;
+    
+    // Initialize with current mouse position
+    lastMouseXRef.current = { x: e.clientX, y: e.clientY };
   };
 
   const handleMouseLeave = () => {
     setIsMouseInteracting(false);
-  };
-
-  const handleClipClick = () => {
-    if (!isLast) {
-      if (videoRef.current && isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-      if (onNextClip) onNextClip();
-    }
   };
 
   const togglePlayPause = () => {
@@ -169,6 +179,7 @@ export default function ClipView({
       if (hasReachedEnd) {
         video.currentTime = 0;
         setHasReachedEnd(false);
+        totalMovementRef.current = 0;
       }
       
       // Start playing from current position
@@ -184,11 +195,11 @@ export default function ClipView({
 
   return (
     <div className={styles.clipContainer}>
-      <div 
+      <div
         className={styles.clipWrapper}
         ref={containerRef}
       >
-        <div 
+        <div
           className={styles.videoContainer}
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
@@ -206,17 +217,14 @@ export default function ClipView({
             src={clip.src}
             playsInline
             preload="auto"
-            onClick={(e) => e.stopPropagation()} // Prevent the video click from triggering clip click
+            onClick={(e) => e.stopPropagation()}
           />
           
-          <div 
-            className={`${styles.clipOverlay} ${!isLast ? styles.clickable : ''}`}
-            onClick={handleClipClick}
-          ></div>
+          <div className={styles.clipOverlay}></div>
           
           {!isPlaying && isVideoReady && (
             <div className={`${styles.scrubIndicator} ${isMouseInteracting && !hasReachedEnd ? styles.active : ''}`}>
-              <span>Move mouse right to scrub through clip</span>
+              <span>Move cursor to scrub through clip</span>
             </div>
           )}
         </div>

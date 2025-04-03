@@ -63,22 +63,6 @@ export default function FilmRenderer({ film }) {
               ))}
             </div>
           )}
-          
-          {/* Clip Navigation */}
-          <div className={styles.clipNavigation}>
-            <h3>Clips:</h3>
-            <div className={styles.clipList}>
-              {film.clips.map((clip, index) => (
-                <button
-                  key={index}
-                  className={`${styles.clipButton} ${selectedClipIndex === index ? styles.activeClip : ''}`}
-                  onClick={() => setSelectedClipIndex(index)}
-                >
-                  {index + 1}. {clip.caption}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       </>
     );

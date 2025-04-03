@@ -62,24 +62,20 @@
 }
 
 .playPauseButton {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.6);
+  position: static;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease;
+  margin: 5px auto 0;
+  padding: 0;
   z-index: 10;
 }
 
 .playPauseButton:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0.8;
 }
 
 .playPauseButton.disabled {
@@ -88,9 +84,9 @@
 }
 
 .playIcon, .pauseIcon {
-  width: 20px;
-  height: 20px;
-  fill: white;
+  width: 24px;
+  height: 24px;
+  fill: black;
 }
 
 .scrubIndicator {
