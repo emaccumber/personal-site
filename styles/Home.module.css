@@ -61,15 +61,19 @@
 }
 
 .featuredImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: calc(100vh - 70px); /* Subtract header height */
-  position: relative;
+  padding: 20px;
+  overflow: hidden;
 }
 
 .featuredImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: calc(100vh - 110px); /* Subtract header height and padding */
+  object-fit: contain;
+  display: block;
 }
 
 .galleryContainer {
