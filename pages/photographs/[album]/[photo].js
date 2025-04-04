@@ -1,69 +1,23 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from '@/styles/Home.module.css';
-import PhotoView from '@/components/PhotoView';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { getAllPhotoAlbums, getPhotoAlbumBySlug } from '@/lib/api';
 
-export default function PhotoPage({ albums, album, photo, photoIndex, albumSlug }) {
-  if (!album || !photo) {
-    return <div>Photo not found</div>;
-  }
+// This is now just a redirect page to the new album view with the correct photo
+export default function PhotoRedirect({ albumSlug, photoIndex }) {
+  const router = useRouter();
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>{album.title} | Ethan MacCumber</title>
-        <meta name="description" content={`Photo ${photoIndex + 1} from ${album.title} by Ethan MacCumber`} />
-      </Head>
+  useEffect(() => {
+    if (router.isReady) {
+      // Redirect to the album page with the photo query parameter
+      router.replace(`/photographs/${albumSlug}?photo=${photoIndex + 1}`);
+    }
+  }, [router.isReady, albumSlug, photoIndex]);
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={`${styles.navLink} ${styles.active}`}>
-            photographs
-          </Link>
-          <Link href="/films" className={styles.navLink}>
-            films
-          </Link>
-          <Link href="/writing" className={styles.navLink}>
-            writing
-          </Link>
-          <Link href="/information" className={styles.navLink}>
-            information
-          </Link>
-        </nav>
-      </header>
-
-      <div className={styles.backToAlbums}>
-        <Link href="/photographs">
-          &lt;&lt;&lt;
-        </Link>
-      </div>
-
-      <main className={styles.photoPageMain}>
-        <PhotoView
-          photo={photo}
-          albumSlug={albumSlug}
-          photoIndex={photoIndex}
-          totalPhotos={album.photos.length}
-        />
-
-        {album.description && (
-          <div className={styles.albumDescription}>
-            {album.description}
-          </div>
-        )}
-      </main>
-    </div>
-  );
+  // Return null as this is just a redirect page
+  return null;
 }
 
 export async function getStaticProps({ params }) {
-  const albums = getAllPhotoAlbums();
   const album = getPhotoAlbumBySlug(params.album);
 
   if (!album) {
@@ -73,9 +27,8 @@ export async function getStaticProps({ params }) {
   }
 
   const photoIndex = parseInt(params.photo, 10) - 1; // Convert from 1-based to 0-based
-  const photo = album.photos[photoIndex];
-
-  if (!photo) {
+  
+  if (isNaN(photoIndex) || photoIndex < 0 || photoIndex >= album.photos.length) {
     return {
       notFound: true
     };
@@ -83,11 +36,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      albums,
-      album,
-      photo,
-      photoIndex,
-      albumSlug: params.album // Pass the album slug from URL params
+      albumSlug: params.album,
+      photoIndex
     }
   };
 }

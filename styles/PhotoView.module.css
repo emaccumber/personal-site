@@ -15,6 +15,15 @@
 .photo {
   width: 100%;
   height: auto;
+  transition: opacity 0.3s ease;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
 }
 
 .photo.clickable {
@@ -46,6 +55,8 @@
   padding: 20px;
   cursor: pointer;
   pointer-events: auto; /* This allows the arrows to be clickable */
+  background: none;
+  border: none;
 }
 
 .leftArrow {
