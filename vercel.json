@@ -1,1 +1,0 @@
-{\n  \"version\": 2,\n  \"buildCommand\": \"npm run build\",\n  \"devCommand\": \"npm run dev\",\n  \"installCommand\": \"npm install\",\n  \"framework\": \"nextjs\",\n  \"regions\": [\"sfo1\"]\n}
