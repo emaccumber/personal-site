@@ -5,42 +5,42 @@
         "title": "Rabat",
         "slug": "rabat",
         "description": "Photographs from Rabat, Morocco",
-        "coverImage": "/images/photography/rabat/cover.jpg"
+        "coverImage": "/images/photographs/rabat/cover.jpg"
       },
       {
         "id": "tamarac",
         "title": "Tamarac",
         "slug": "tamarac",
         "description": "Tamarac series",
-        "coverImage": "/images/photography/tamarac/cover.jpg"
+        "coverImage": "/images/photographs/tamarac/cover.jpg"
       },
       {
         "id": "camogli",
         "title": "Camogli",
         "slug": "camogli",
         "description": "Scenes from Camogli",
-        "coverImage": "/images/photography/camogli/cover.jpg"
+        "coverImage": "/images/photographs/camogli/cover.jpg"
       },
       {
         "id": "iowa",
         "title": "Iowa",
         "slug": "iowa",
         "description": "Iowa landscapes",
-        "coverImage": "/images/photography/iowa/cover.jpg"
+        "coverImage": "/images/photographs/iowa/cover.jpg"
       },
       {
         "id": "party",
         "title": "Party",
         "slug": "party",
         "description": "Party scenes",
-        "coverImage": "/images/photography/party/cover.jpg"
+        "coverImage": "/images/photographs/party/cover.jpg"
       },
       {
         "id": "graduation",
         "title": "Graduation",
         "slug": "graduation",
         "description": "Graduation ceremony",
-        "coverImage": "/images/photography/graduation/cover.jpg"
+        "coverImage": "/images/photographs/graduation/cover.jpg"
       }
     ]
   }
