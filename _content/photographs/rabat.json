@@ -4,19 +4,19 @@
     "photos": [
       {
         "id": 1,
-        "src": "/images/photography/rabat/1.jpg",
+        "src": "/images/photographs/rabat/1.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Doctor discussing medical information with a patient in the hospital corridor."
       },
       {
         "id": 2,
-        "src": "/images/photography/rabat/2.jpg",
+        "src": "/images/photographs/rabat/2.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Waiting room in the maternity ward."
       },
       {
         "id": 3,
-        "src": "/images/photography/rabat/3.jpg",
+        "src": "/images/photographs/rabat/3.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Medical staff reviewing patient files."
       }
