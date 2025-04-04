@@ -15,9 +15,9 @@ A portfolio website built with Next.js showcasing photographs, films, and writin
 
 1. Create a Backblaze B2 account if you don't already have one
 2. Create a new bucket (e.g., "ethanmaccumber-media")
-3. Make the bucket public by setting its "Files in Bucket are" option to "Public"
-4. Create an application key with read-only access to this bucket
-5. Note your bucket name and application key information
+3. Make the bucket private for better security
+4. Create an application key with read access to this bucket
+5. Note your bucket name, bucket ID, application key ID, and application key
 6. Upload your media files to the bucket (images, videos, etc.) maintaining the same folder structure as in your public directory
 
 ### Setting Up Vercel
@@ -26,7 +26,10 @@ A portfolio website built with Next.js showcasing photographs, films, and writin
 2. Create an account on Vercel and connect it to your GitHub account
 3. Import your repository to Vercel
 4. Configure Environment Variables in the Vercel dashboard:
-   - `NEXT_PUBLIC_B2_BUCKET_URL`: URL to your B2 bucket (e.g., https://f004.backblazeb2.com/file/ethanmaccumber-media)
+   - `BACKBLAZE_APPLICATION_KEY_ID`: Your Backblaze application key ID
+   - `BACKBLAZE_APPLICATION_KEY`: Your Backblaze application key
+   - `BACKBLAZE_BUCKET_NAME`: Your bucket name
+   - `BACKBLAZE_BUCKET_ID`: Your bucket ID
 5. Deploy
 
 ### Setting Up Custom Domain
@@ -55,7 +58,10 @@ npm run dev
 Copy `.env.local` to your local environment and update the values:
 
 ```
-NEXT_PUBLIC_B2_BUCKET_URL=https://f004.backblazeb2.com/file/your-bucket-name
+BACKBLAZE_APPLICATION_KEY_ID=your_application_key_id
+BACKBLAZE_APPLICATION_KEY=your_application_key
+BACKBLAZE_BUCKET_NAME=your_bucket_name
+BACKBLAZE_BUCKET_ID=your_bucket_id
 ```
 
 ### Project Structure
