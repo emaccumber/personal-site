@@ -2,22 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Film.module.css';
 import VimeoPlayer from '@/components/VimeoPlayer';
-import PreloadedClipView from '@/components/PreloadedClipView';
-import ClientOnly from '@/components/ClientOnly';
+import ClipView from '@/components/ClipView';
 
 export default function FilmRenderer({ film }) {
   const router = useRouter();
-  const [currentClipIndex, setCurrentClipIndex] = useState(0);
+  const [selectedClipIndex, setSelectedClipIndex] = useState(0);
   
-  // Parse clip query parameter only on initial load
+  // Parse clip query parameter from URL
   useEffect(() => {
-    if (router.isReady && film.type === 'moving-image-album' && router.query.clip) {
+    if (film.type === 'moving-image-album' && router.query.clip) {
       const clipIndex = parseInt(router.query.clip, 10) - 1;
       if (clipIndex >= 0 && clipIndex < film.clips.length) {
-        setCurrentClipIndex(clipIndex);
+        setSelectedClipIndex(clipIndex);
       }
     }
-  }, [router.isReady, film]);
+  }, [router.query.clip, film]);
+
+  // Update URL when clip changes with minimal changes
+  const updateClip = (newIndex) => {
+    if (newIndex >= 0 && newIndex < film.clips.length) {
+      // Update state immediately for smooth UI experience
+      setSelectedClipIndex(newIndex);
+      
+      // Update URL without triggering a full navigation
+      const slug = film.originalSlug || film.slug.replace('moving-image-', '');
+      const url = `/films/moving-image-${slug}?clip=${newIndex + 1}`;
+      
+      // Use history API directly - simplest approach to avoid Next.js router complexity
+      window.history.replaceState(
+        { as: url, url: url },
+        '',
+        url
+      );
+    }
+  };
 
   // Handle regular films with Vimeo videos
   if (!film.type || film.type !== 'moving-image-album') {
@@ -43,39 +61,27 @@ export default function FilmRenderer({ film }) {
 
   // Handle moving image albums
   if (film.type === 'moving-image-album' && film.clips && film.clips.length > 0) {
+    const currentClip = film.clips[selectedClipIndex];
+
     return (
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column',
-        maxWidth: '1000px', // Increased from original value
-        width: '100%',
-        margin: '0 auto',
-        overflow: 'hidden'
-      }}>
+      <>
         <div className={styles.movingImageContainer}>
-          <ClientOnly
-            placeholder={
-              <div style={{
-                position: 'relative',
-                paddingBottom: '75%', // 4:3 aspect ratio
-                height: 0,
-                overflow: 'hidden',
-                background: '#f0f0f0'
-              }}>
-              </div>
-            }
-          >
-            <PreloadedClipView
-              clips={film.clips}
-              currentClipIndex={currentClipIndex}
-              onNextClip={() => setCurrentClipIndex(prevIndex => 
-                Math.min(prevIndex + 1, film.clips.length - 1)
-              )}
-              onPrevClip={() => setCurrentClipIndex(prevIndex => 
-                Math.max(prevIndex - 1, 0)
-              )}
-            />
-          </ClientOnly>
+          <ClipView
+            clip={currentClip}
+            albumSlug={film.originalSlug}
+            clipIndex={selectedClipIndex}
+            totalClips={film.clips.length}
+            onNextClip={() => {
+              if (selectedClipIndex < film.clips.length - 1) {
+                updateClip(selectedClipIndex + 1);
+              }
+            }}
+            onPrevClip={() => {
+              if (selectedClipIndex > 0) {
+                updateClip(selectedClipIndex - 1);
+              }
+            }}
+          />
         </div>
 
         <div className={styles.filmInfo}>
@@ -89,7 +95,7 @@ export default function FilmRenderer({ film }) {
             </div>
           )}
         </div>
-      </div>
+      </>
     );
   }
 

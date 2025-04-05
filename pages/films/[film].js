@@ -1,13 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 import filmStyles from '@/styles/Film.module.css';
 import FilmRenderer from '@/components/FilmRenderer';
 import { getAllFilms, getFilmBySlug } from '@/lib/api';
 
 export default function FilmPage({ films, film, filmSlug }) {
-  if (!film) {
-    return <div>Film not found</div>;
+  const router = useRouter();
+
+  // Use router.isReady to ensure page doesn't flicker on shallow routing
+  if (!router.isReady || !film) {
+    return <div>Loading...</div>;
   }
 
   return (
