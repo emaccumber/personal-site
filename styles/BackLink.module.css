@@ -1,0 +1,9 @@
+.backLink {
+  padding: 20px 0 0 20px;
+  font-size: 18px;
+}
+
+.backLink a {
+  text-decoration: none;
+  color: #000;
+}

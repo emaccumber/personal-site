@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from '@/styles/Home.module.css';
+import Layout from '@/components/Layout';
+import BackLink from '@/components/BackLink';
+import styles from '@/styles/Album.module.css';
 import AlbumView from '@/components/AlbumView';
 import { getAllPhotoAlbums, getPhotoAlbumBySlug } from '@/lib/api';
 
@@ -21,46 +21,23 @@ export default function AlbumPage({ album }) {
   }, [router.isReady, router.query.photo, album.photos.length]);
 
   if (!album) {
-    return <div>Album not found</div>;
+    return (
+      <Layout title="Album Not Found" activeNav="photographs">
+        <div className={styles.albumError}>Album not found</div>
+      </Layout>
+    );
   }
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>{album.title} | Ethan MacCumber</title>
-        <meta name="description" content={`${album.title} by Ethan MacCumber`} />
-      </Head>
+    <Layout
+      title={album.title}
+      description={`${album.title} by Ethan MacCumber`}
+      activeNav="photographs"
+    >
+      <BackLink href="/photographs" />
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={`${styles.navLink} ${styles.active}`}>
-            photographs
-          </Link>
-          <Link href="/films" className={styles.navLink}>
-            films
-          </Link>
-          <Link href="/writing" className={styles.navLink}>
-            writing
-          </Link>
-          <Link href="/information" className={styles.navLink}>
-            information
-          </Link>
-        </nav>
-      </header>
-
-      <div className={styles.backToAlbums}>
-        <Link href="/photographs">
-          &lt;&lt;&lt;
-        </Link>
-      </div>
-
-      <main className={styles.photoPageMain}>
-        <AlbumView 
+      <div className={styles.albumPageMain}>
+        <AlbumView
           album={album}
           initialPhotoIndex={initialPhotoIndex}
         />
@@ -70,8 +47,8 @@ export default function AlbumPage({ album }) {
             {album.description}
           </div>
         )}
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

@@ -1,0 +1,23 @@
+.albumPageMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.albumDescription {
+  padding: 20px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 20px auto 0;
+  font-size: 16px;
+}
+
+.albumError {
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+}

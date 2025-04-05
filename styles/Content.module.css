@@ -1,0 +1,39 @@
+.contentContainer {
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.contentWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contentTitle {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.contentBody {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.contentBody p {
+  margin-bottom: 20px;
+}
+
+.contentBody h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 30px 0 15px 0;
+}
+
+.contentBody a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.contentBody a:hover {
+  opacity: 0.7;
+}

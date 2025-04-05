@@ -9,9 +9,9 @@
       },
       {
         "id": "16mm-project",
-        "title": "16mm Film Sketches",
+        "title": "16mm Film Project",
         "slug": "16mm-project",
-        "description": "Brief description of your album",
+        "description": "A collection of experimental 16mm film clips.",
         "coverImage": "/images/films/16mm-project/cover.jpg",
         "type": "moving-image-album"
       }

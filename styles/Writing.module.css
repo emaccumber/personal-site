@@ -122,3 +122,10 @@
   color: #000;
   text-decoration: none;
 }
+
+.postError {
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+}

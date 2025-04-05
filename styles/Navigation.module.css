@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navLink {
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.navLink:hover, .navLink.active {
+  opacity: 1;
+}
