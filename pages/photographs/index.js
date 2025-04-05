@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import { getAllPhotoAlbums } from '@/lib/api';
+import { getCoverImageUrl } from '@/lib/backblaze';
 
 export default function Photographs({ albums }) {
   return (
@@ -35,15 +36,15 @@ export default function Photographs({ albums }) {
 
       <main className={styles.galleryContainer}>
         {albums.map((album) => (
-          <Link 
-            href={`/photographs/${album.slug}`} 
-            key={album.id} 
+          <Link
+            href={`/photographs/${album.slug}`}
+            key={album.id}
             className={styles.galleryItem}
           >
             <div className={styles.galleryImageContainer}>
-              <img 
-                src={album.coverImage} 
-                alt={album.title} 
+              <img
+                src={getCoverImageUrl(album.coverImage)}
+                alt={album.title}
                 className={styles.galleryImage}
               />
             </div>

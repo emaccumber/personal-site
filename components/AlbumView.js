@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
+import { getImageUrl } from '@/lib/backblaze';
 
 export default function AlbumView({ album, initialPhotoIndex = 0 }) {
   const router = useRouter();
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(initialPhotoIndex);
   const totalPhotos = album.photos.length;
-  
+
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   const isFirst = currentPhotoIndex === 0;
@@ -57,16 +58,16 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
       // Preload next image if there is one
       if (!isLast) {
         const nextImg = new Image();
-        nextImg.src = album.photos[currentPhotoIndex + 1].src;
+        nextImg.src = getImageUrl(album.photos[currentPhotoIndex + 1].src);
       }
-      
+
       // Preload previous image if there is one
       if (!isFirst) {
         const prevImg = new Image();
-        prevImg.src = album.photos[currentPhotoIndex - 1].src;
+        prevImg.src = getImageUrl(album.photos[currentPhotoIndex - 1].src);
       }
     };
-    
+
     preloadImages();
   }, [currentPhotoIndex, album.photos, isFirst, isLast]);
 
@@ -84,7 +85,7 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
     <div className={styles.photoContainer}>
       <div className={styles.photoWrapper}>
         <img
-          src={currentPhoto.src}
+          src={getImageUrl(currentPhoto.src)}
           alt={currentPhoto.caption || 'Photograph'}
           className={`${styles.photo} ${!isLast ? styles.clickable : ''} ${isImageLoading ? styles.fadeOut : styles.fadeIn}`}
           onClick={handlePhotoClick}

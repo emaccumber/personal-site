@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
+import { getImageUrl } from '@/lib/backblaze';
 
 export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos }) {
   const router = useRouter();
   const isFirst = photoIndex === 0;
   const isLast = photoIndex === totalPhotos - 1;
-  
+
   const prevLink = isFirst ? '#' : `/photographs/${albumSlug}/${photoIndex}`;
   const nextLink = isLast ? '#' : `/photographs/${albumSlug}/${photoIndex + 2}`; // +2 because we're using 1-based indexing in URLs
 
@@ -38,7 +39,7 @@ export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos })
     <div className={styles.photoContainer}>
       <div className={styles.photoWrapper}>
         <img
-          src={photo.src}
+          src={getImageUrl(photo.src)}
           alt={photo.caption || 'Photograph'}
           className={`${styles.photo} ${!isLast ? styles.clickable : ''}`}
           onClick={handlePhotoClick}

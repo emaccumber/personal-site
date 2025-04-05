@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/ClipView.module.css';
+import { getVideoUrl } from '@/lib/backblaze';
 
 export default function ClipView({
   clip,
@@ -155,7 +156,7 @@ export default function ClipView({
 
     // Initialize mouse tracking
     setIsMouseInteracting(true);
-    
+
     // Calculate totalMovementRef based on current video position
     // This ensures scrubbing continues from where playback stopped
     if (videoRef.current.currentTime > 0) {
@@ -222,7 +223,7 @@ export default function ClipView({
           <video
             ref={videoRef}
             className={`${styles.video} ${isVideoReady ? styles.videoReady : styles.videoLoading}`}
-            src={clip.src}
+            src={getVideoUrl(clip.src)}
             playsInline
             preload="auto"
             onClick={(e) => e.stopPropagation()}

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import { getAllFilms } from '@/lib/api';
+import { getCoverImageUrl } from '@/lib/backblaze';
 
 export default function Films({ films }) {
   return (
@@ -42,7 +43,7 @@ export default function Films({ films }) {
           >
             <div className={styles.galleryImageContainer}>
               <img
-                src={film.coverImage}
+                src={getCoverImageUrl(film.coverImage)}
                 alt={film.title}
                 className={styles.galleryImage}
               />
