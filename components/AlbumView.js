@@ -82,19 +82,32 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
 
   return (
     <div className={styles.photoContainer}>
-      <div className={styles.photoWrapper}>
-        <img
-          src={currentPhoto.src}
-          alt={currentPhoto.caption || 'Photograph'}
-          className={`${styles.photo} ${!isLast ? styles.clickable : ''} ${isImageLoading ? styles.fadeOut : styles.fadeIn}`}
-          onClick={handlePhotoClick}
-          onLoad={() => setIsImageLoading(false)}
-        />
-        {currentPhoto.caption && (
-          <div className={styles.caption}>
-            {currentPhoto.caption}
+      <div className={styles.imageContainer}>
+        <div className={styles.photoAndCaption}>
+          <div className={styles.photoWrapper}>
+            <img
+              src={currentPhoto.src}
+              alt={currentPhoto.caption || 'Photograph'}
+              className={`${styles.photo} ${!isLast ? styles.clickable : ''} ${isImageLoading ? styles.fadeOut : styles.fadeIn}`}
+              onClick={handlePhotoClick}
+              onLoad={() => setIsImageLoading(false)}
+              ref={(el) => {
+                // This helps ensure the caption width matches the image width
+                if (el) {
+                  const captionEl = el.parentNode.parentNode.querySelector(`.${styles.caption}`);
+                  if (captionEl) {
+                    captionEl.style.width = `${el.width}px`;
+                  }
+                }
+              }}
+            />
           </div>
-        )}
+          {currentPhoto.caption && (
+            <div className={styles.caption}>
+              {currentPhoto.caption}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={styles.arrowNavigation}>

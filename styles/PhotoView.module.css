@@ -6,15 +6,33 @@
   position: relative;
 }
 
-.photoWrapper {
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   margin-bottom: 10px;
+}
+
+.photoAndCaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photoWrapper {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo {
-  width: 100%;
+  max-width: 100%;
+  max-height: 80vh; /* Limit height to 80% of viewport height */
+  width: auto;
   height: auto;
+  object-fit: contain;
   transition: opacity 0.3s ease;
 }
 
@@ -34,6 +52,7 @@
   margin-top: 10px;
   text-align: right;
   font-size: 14px;
+  align-self: stretch;
 }
 
 .arrowNavigation {
