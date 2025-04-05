@@ -1,13 +1,6 @@
 {
     "albums": [
       {
-        "id": "rabat",
-        "title": "Rabat",
-        "slug": "rabat",
-        "description": "Photographs from Rabat, Morocco",
-        "coverImage": "/images/photographs/rabat/cover.jpg"
-      },
-      {
         "id": "tamarac",
         "title": "Tamarac",
         "slug": "tamarac",
@@ -20,27 +13,6 @@
         "slug": "camogli",
         "description": "Scenes from Camogli",
         "coverImage": "/images/photographs/camogli/cover.jpg"
-      },
-      {
-        "id": "iowa",
-        "title": "Iowa",
-        "slug": "iowa",
-        "description": "Iowa landscapes",
-        "coverImage": "/images/photographs/iowa/cover.jpg"
-      },
-      {
-        "id": "party",
-        "title": "Party",
-        "slug": "party",
-        "description": "Party scenes",
-        "coverImage": "/images/photographs/party/cover.jpg"
-      },
-      {
-        "id": "graduation",
-        "title": "Graduation",
-        "slug": "graduation",
-        "description": "Graduation ceremony",
-        "coverImage": "/images/photographs/graduation/cover.jpg"
       }
     ]
   }

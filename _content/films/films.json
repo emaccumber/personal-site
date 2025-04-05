@@ -8,27 +8,6 @@
         "coverImage": "/images/films/months-at-home/cover.jpg"
       },
       {
-        "id": "lakeview-hyde-park",
-        "title": "Lakeview / Hyde Park",
-        "slug": "lakeview-hyde-park",
-        "description": "A visual journey through Chicago neighborhoods",
-        "coverImage": "/images/films/lakeview-hyde-park/cover.jpg"
-      },
-      {
-        "id": "open-circuit-short-circuit",
-        "title": "Open Circuit Short Circuit",
-        "slug": "open-circuit-short-circuit",
-        "description": "\"open circuit and short circuit test 断路以及短路测试\" by Liang-Jung Chen",
-        "coverImage": "/images/films/open-circuit-short-circuit/cover.jpg"
-      },
-      {
-        "id": "to-make-matters-worse",
-        "title": "To Make Matters Worse",
-        "slug": "to-make-matters-worse",
-        "description": "An experimental short film",
-        "coverImage": "/images/films/to-make-matters-worse/cover.jpg"
-      },
-      {
         "id": "16mm-project",
         "title": "16mm Film Sketches",
         "slug": "16mm-project",

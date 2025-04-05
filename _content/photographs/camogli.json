@@ -1,22 +1,22 @@
 {
-    "title": "Rabat",
+    "title": "Camogli",
     "description": "These photographs will accompany an upcoming book about the history of women's health in Morocco. All were taken at l'Hôpital de Maternité et Santé Reproductrice les Orangers.",
     "photos": [
       {
         "id": 1,
-        "src": "/images/photographs/rabat/1.jpg",
+        "src": "/images/photographs/camogli/1.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Doctor discussing medical information with a patient in the hospital corridor."
       },
       {
         "id": 2,
-        "src": "/images/photographs/rabat/2.jpg",
+        "src": "/images/photographs/camogli/2.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Waiting room in the maternity ward."
       },
       {
         "id": 3,
-        "src": "/images/photographs/rabat/3.jpg",
+        "src": "/images/photographs/camogli/3.jpg",
         "caption": "Rabat, Morocco, 2024",
         "description": "Medical staff reviewing patient files."
       }
