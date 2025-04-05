@@ -1,13 +1,61 @@
 {
-    "title": "Your Album Title",
-    "description": "A detailed description of this collection of clips.",
-    "date": "2024",
-    "clips": [
-      {
-        "id": 1,
-        "src": "/videos/films/16mm-project/clip1.mp4",
-        "caption": "Location or title, Year",
-        "description": "Description of this specific clip."
-      }
-    ]
-  }
+  "title": "16mm Film Sketches",
+  "description": "A collection of short clips captured on 16mm film",
+  "date": "2024",
+  "clips": [
+    {
+      "id": 1,
+      "src": "/videos/films/16mm-project/1.mp4",
+      "caption": "Location 1, 2024",
+      "description": "Scene from first 16mm film clip."
+    },
+    {
+      "id": 2,
+      "src": "/videos/films/16mm-project/2.mp4",
+      "caption": "Location 2, 2024",
+      "description": "Scene from second 16mm film clip."
+    },
+    {
+      "id": 3,
+      "src": "/videos/films/16mm-project/3.mp4",
+      "caption": "Location 3, 2024",
+      "description": "Scene from third 16mm film clip."
+    },
+    {
+      "id": 4,
+      "src": "/videos/films/16mm-project/4.mp4",
+      "caption": "Location 4, 2024",
+      "description": "Scene from fourth 16mm film clip."
+    },
+    {
+      "id": 5,
+      "src": "/videos/films/16mm-project/5.mp4",
+      "caption": "Location 5, 2024",
+      "description": "Scene from fifth 16mm film clip."
+    },
+    {
+      "id": 6,
+      "src": "/videos/films/16mm-project/6.mp4",
+      "caption": "Location 6, 2024",
+      "description": "Scene from sixth 16mm film clip."
+    },
+    {
+      "id": 7,
+      "src": "/videos/films/16mm-project/7.mp4",
+      "caption": "Location 7, 2024",
+      "description": "Scene from seventh 16mm film clip."
+    },
+    {
+      "id": 8,
+      "src": "/videos/films/16mm-project/8.mp4",
+      "caption": "Location 8, 2024",
+      "description": "Scene from eighth 16mm film clip."
+    },
+    {
+      "id": 9,
+      "src": "/videos/films/16mm-project/9.mp4",
+      "caption": "Location 9, 2024",
+      "description": "Scene from ninth 16mm film clip."
+    }
+  ]
+}

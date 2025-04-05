@@ -1,0 +1,30 @@
+{
+    "title": "Tamarac",
+    "description": "Tamarac series",
+    "photos": [
+      {
+        "id": 1,
+        "src": "/images/photographs/tamarac/1.jpg",
+        "caption": "Tamarac, 2024",
+        "description": "Forest landscape in early morning light."
+      },
+      {
+        "id": 2,
+        "src": "/images/photographs/tamarac/2.jpg",
+        "caption": "Tamarac, 2024",
+        "description": "Reflections on still waters at dusk."
+      },
+      {
+        "id": 3,
+        "src": "/images/photographs/tamarac/3.jpg",
+        "caption": "Tamarac, 2024",
+        "description": "Wildlife in natural habitat."
+      },
+      {
+        "id": 4,
+        "src": "/images/photographs/tamarac/4.jpg",
+        "caption": "Tamarac, 2024",
+        "description": "Sunset through the treeline."
+      }
+    ]
+  }

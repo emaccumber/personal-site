@@ -1,7 +1,96 @@
+// In your FilmRenderer.js file:
+
+import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
+import styles from '@/styles/Film.module.css';
+import VimeoPlayer from '@/components/VimeoPlayer';
+import SimpleClipView from '@/components/SimpleClipView';
+
+export default function FilmRenderer({ film }) {
+  const router = useRouter();
+  const [currentClipIndex, setCurrentClipIndex] = useState(0);
+  
+  // Parse clip query parameter only on initial load
+  useEffect(() => {
+    if (router.isReady && film.type === 'moving-image-album' && router.query.clip) {
+      const clipIndex = parseInt(router.query.clip, 10) - 1;
+      if (clipIndex >= 0 && clipIndex < film.clips.length) {
+        setCurrentClipIndex(clipIndex);
+      }
+    }
+  }, [router.isReady, film]);
+
+  // Handler for navigating between clips
+  const navigateToClip = (newIndex) => {
+    if (newIndex >= 0 && newIndex < film.clips.length) {
+      setCurrentClipIndex(newIndex);
+    }
+  };
+
+  // Handle regular films with Vimeo videos
+  if (!film.type || film.type !== 'moving-image-album') {
+    return (
+      <>
+        <VimeoPlayer vimeoId={film.vimeoId} />
+        <div className={styles.filmInfo}>
+          {film.subtitle && <h1 className={styles.filmTitle}>{film.subtitle}</h1>}
+          {film.director && <p className={styles.filmDirector}>{film.director}</p>}
+          {film.filmmaker && <p className={styles.filmMaker}>{film.filmmaker}</p>}
+          {film.date && <p className={styles.filmDate}>{film.date}</p>}
+          {film.description && (
+            <div className={styles.filmDescription}>
+              {film.description.split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
+
+  // Handle moving image albums
+  if (film.type === 'moving-image-album' && film.clips && film.clips.length > 0) {
+    const currentClip = film.clips[currentClipIndex];
+
+    return (
+      <>
+        <div className={styles.movingImageContainer}>
+          <SimpleClipView
+            key={`clip-${currentClipIndex}`}
+            clip={currentClip}
+            clipIndex={currentClipIndex}
+            totalClips={film.clips.length}
+            onNextClip={() => navigateToClip(currentClipIndex + 1)}
+            onPrevClip={() => navigateToClip(currentClipIndex - 1)}
+          />
+        </div>
+
+        <div className={styles.filmInfo}>
+          <h1 className={styles.filmTitle}>{film.title}</h1>
+          {film.date && <p className={styles.filmDate}>{film.date}</p>}
+          {film.description && (
+            <div className={styles.filmDescription}>
+              {film.description.split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
+
+  // Fallback for empty or invalid content
+  return <div className={styles.filmError}>No content available for this film.</div>;
+}
+
+// In a new file SimpleClipView.js:
+
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/ClipView.module.css';
 
-export default function ClipView({
+export default function SimpleClipView({
   clip,
   clipIndex,
   totalClips,
@@ -9,11 +98,9 @@ export default function ClipView({
   onPrevClip
 }) {
   const videoRef = useRef(null);
-  const containerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const [isMouseInteracting, setIsMouseInteracting] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const mouseMovementRef = useRef(0);
   const lastMouseXRef = useRef({ x: 0, y: 0 });
   const videoLengthRef = useRef(0);
@@ -22,49 +109,21 @@ export default function ClipView({
   const isFirst = clipIndex === 0;
   const isLast = clipIndex === totalClips - 1;
 
-  // Load video metadata to get duration
+  // Handle video load
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Reset video state when clip changes
-    setIsVideoReady(false);
-    setHasReachedEnd(false);
-    setIsPlaying(false);
-    totalMovementRef.current = 0;
-
-    // We need to maintain the scroll position when clip changes
-    const scrollY = window.scrollY;
-
-    // Ensure we start at the beginning
-    if (video.readyState >= 2) {
-      video.currentTime = 0;
-    }
-
     const handleLoadedMetadata = () => {
       videoLengthRef.current = video.duration;
-      // Set first frame as poster by seeking to time 0
       video.currentTime = 0;
-    };
-
-    const handleLoadedData = () => {
-      // Once data is loaded and currentTime has been set to 0,
-      // the video should be showing its first frame
-      video.currentTime = 0;
-      setIsVideoReady(true);
-      
-      // Restore scroll position
-      window.scrollTo(0, scrollY);
     };
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('loadeddata', handleLoadedData);
-
     return () => {
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('loadeddata', handleLoadedData);
     };
-  }, [clip.src]); // Dependency on clip.src to ensure it reloads when the source changes
+  }, [clip.src]);
 
   // Handle video end
   useEffect(() => {
@@ -89,16 +148,7 @@ export default function ClipView({
           videoRef.current.pause();
           setIsPlaying(false);
         }
-        
-        // Save scroll position before navigation
-        const scrollPos = window.scrollY; 
-        
-        if (onNextClip) {
-          onNextClip();
-          
-          // Restore scroll position after state update
-          setTimeout(() => window.scrollTo(0, scrollPos), 0);
-        }
+        if (onNextClip) onNextClip();
       }
       // Left arrow key navigates to previous clip
       else if (e.key === 'ArrowLeft' && !isFirst) {
@@ -106,16 +156,7 @@ export default function ClipView({
           videoRef.current.pause();
           setIsPlaying(false);
         }
-        
-        // Save scroll position before navigation
-        const scrollPos = window.scrollY;
-        
-        if (onPrevClip) {
-          onPrevClip();
-          
-          // Restore scroll position after state update
-          setTimeout(() => window.scrollTo(0, scrollPos), 0);
-        }
+        if (onPrevClip) onPrevClip();
       }
       // Space bar toggles play/pause
       else if (e.key === ' ' || e.key === 'Spacebar') {
@@ -130,7 +171,7 @@ export default function ClipView({
 
   // Mouse movement handler for frame-by-frame scrubbing
   const handleMouseMove = (e) => {
-    if (!videoRef.current || isPlaying || !isMouseInteracting || !isVideoReady) return;
+    if (!videoRef.current || isPlaying || !isMouseInteracting) return;
 
     const video = videoRef.current;
     if (!video) return;
@@ -175,11 +216,11 @@ export default function ClipView({
   };
 
   const handleMouseEnter = (e) => {
-    if (!videoRef.current || isPlaying || !isVideoReady) return;
+    if (!videoRef.current || isPlaying) return;
 
     // Initialize mouse tracking
     setIsMouseInteracting(true);
-    
+
     // Calculate totalMovementRef based on current video position
     // This ensures scrubbing continues from where playback stopped
     if (videoRef.current.currentTime > 0) {
@@ -198,7 +239,7 @@ export default function ClipView({
   };
 
   const togglePlayPause = () => {
-    if (!videoRef.current || !isVideoReady) return;
+    if (!videoRef.current) return;
 
     const video = videoRef.current;
 
@@ -227,10 +268,7 @@ export default function ClipView({
 
   return (
     <div className={styles.clipContainer}>
-      <div
-        className={styles.clipWrapper}
-        ref={containerRef}
-      >
+      <div className={styles.clipWrapper}>
         <div
           className={styles.videoContainer}
           onMouseMove={handleMouseMove}
@@ -239,7 +277,7 @@ export default function ClipView({
         >
           <video
             ref={videoRef}
-            className={`${styles.video} ${isVideoReady ? styles.videoReady : styles.videoLoading}`}
+            className={styles.video}
             src={clip.src}
             playsInline
             preload="auto"
@@ -251,13 +289,12 @@ export default function ClipView({
 
         <div className={styles.bottomContent}>
           <button
-            className={`${styles.playPauseButton} ${isVideoReady ? '' : styles.disabled}`}
+            className={styles.playPauseButton}
             onClick={(e) => {
               e.stopPropagation();
               togglePlayPause();
             }}
             aria-label={isPlaying ? "Pause" : "Play"}
-            disabled={!isVideoReady}
           >
             {isPlaying ? (
               <svg className={styles.pauseIcon} viewBox="0 0 24 24">
@@ -289,14 +326,7 @@ export default function ClipView({
                 videoRef.current.pause();
                 setIsPlaying(false);
               }
-              
-              // Save scroll position
-              const scrollPos = window.scrollY;
-              
               onPrevClip();
-              
-              // Restore scroll position
-              setTimeout(() => window.scrollTo(0, scrollPos), 0);
             }
           }}
           disabled={isFirst}
@@ -312,14 +342,7 @@ export default function ClipView({
                 videoRef.current.pause();
                 setIsPlaying(false);
               }
-              
-              // Save scroll position
-              const scrollPos = window.scrollY;
-              
               onNextClip();
-              
-              // Restore scroll position
-              setTimeout(() => window.scrollTo(0, scrollPos), 0);
             }
           }}
           disabled={isLast}

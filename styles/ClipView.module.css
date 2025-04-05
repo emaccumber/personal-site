@@ -24,13 +24,9 @@
   display: block;
 }
 
-.videoLoading {
-  opacity: 0;
-}
-
-.videoReady {
+/* Remove opacity transitions entirely */
+.videoLoading, .videoReady {
   opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
 .loadingIndicator {
