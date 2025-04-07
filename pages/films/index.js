@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import Header from '@/components/Header';
 import { getAllFilms } from '@/lib/api';
+import Link from 'next/link';
 
 export default function Films({ films }) {
   return (
@@ -11,27 +12,7 @@ export default function Films({ films }) {
         <meta name="description" content="Films by Ethan MacCumber" />
       </Head>
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={styles.navLink}>
-            photographs
-          </Link>
-          <Link href="/films" className={`${styles.navLink} ${styles.active}`}>
-            films
-          </Link>
-          <Link href="/writing" className={styles.navLink}>
-            writing
-          </Link>
-          <Link href="/information" className={styles.navLink}>
-            information
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       <main className={styles.galleryContainer}>
         {films.map((film) => (

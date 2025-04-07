@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 import writingStyles from '@/styles/Writing.module.css';
+import Header from '@/components/Header';
 import { getAllWritingPosts, getWritingPostBySlug } from '@/lib/api';
 
 export default function Post({ post }) {
@@ -19,27 +20,7 @@ export default function Post({ post }) {
         <meta name="description" content={post.excerpt || post.title} />
       </Head>
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={styles.navLink}>
-            photographs
-          </Link>
-          <Link href="/films" className={styles.navLink}>
-            films
-          </Link>
-          <Link href="/writing" className={`${styles.navLink} ${styles.active}`}>
-            writing
-          </Link>
-          <Link href="/information" className={styles.navLink}>
-            information
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       <div className={styles.backToAlbums}>
         <Link href="/writing">

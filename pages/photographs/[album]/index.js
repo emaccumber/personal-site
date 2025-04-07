@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import Header from '@/components/Header';
 import AlbumView from '@/components/AlbumView';
 import { getAllPhotoAlbums, getPhotoAlbumBySlug } from '@/lib/api';
 
@@ -31,27 +32,7 @@ export default function AlbumPage({ album }) {
         <meta name="description" content={`${album.title} by Ethan MacCumber`} />
       </Head>
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={`${styles.navLink} ${styles.active}`}>
-            photographs
-          </Link>
-          <Link href="/films" className={styles.navLink}>
-            films
-          </Link>
-          <Link href="/writing" className={styles.navLink}>
-            writing
-          </Link>
-          <Link href="/information" className={styles.navLink}>
-            information
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       <div className={styles.backToAlbums}>
         <Link href="/photographs">
