@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
+import { getMediaUrl } from '@/lib/mediaUrl';
 
 export default function AlbumView({ album, initialPhotoIndex = 0 }) {
   const router = useRouter();
@@ -57,13 +58,13 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
       // Preload next image if there is one
       if (!isLast) {
         const nextImg = new Image();
-        nextImg.src = album.photos[currentPhotoIndex + 1].src;
+        nextImg.src = getMediaUrl(album.photos[currentPhotoIndex + 1].src);
       }
       
       // Preload previous image if there is one
       if (!isFirst) {
         const prevImg = new Image();
-        prevImg.src = album.photos[currentPhotoIndex - 1].src;
+        prevImg.src = getMediaUrl(album.photos[currentPhotoIndex - 1].src);
       }
     };
     
@@ -86,7 +87,7 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
         <div className={styles.photoAndCaption}>
           <div className={styles.photoWrapper}>
             <img
-              src={currentPhoto.src}
+              src={getMediaUrl(currentPhoto.src)}
               alt={currentPhoto.caption || 'Photograph'}
               className={`${styles.photo} ${!isLast ? styles.clickable : ''} ${isImageLoading ? styles.fadeOut : styles.fadeIn}`}
               onClick={handlePhotoClick}

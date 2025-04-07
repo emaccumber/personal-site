@@ -6,9 +6,13 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "clean": "node cleanup.js"
+        "clean": "node cleanup.js",
+        "upload-media": "node upload-to-b2.js",
+        "deploy": "vercel --prod"
     },
     "dependencies": {
+        "backblaze-b2": "^1.7.0",
+        "dotenv": "^16.3.1",
         "gray-matter": "4.0.3",
         "next": "^14.2.26",
         "react": "18.2.0",
