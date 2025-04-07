@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import Header from '@/components/Header';
 import { getInformationContent } from '@/lib/api';
 
 export default function Information({ title, contentHtml }) {
   console.log('Rendering Information page with props:', { title, contentHtml });
-  
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,32 +13,12 @@ export default function Information({ title, contentHtml }) {
         <meta name="description" content="About Ethan MacCumber" />
       </Head>
 
-      <header className={styles.header}>
-        <div className={styles.nameContainer}>
-          <Link href="/" className={styles.name}>
-            Ethan MacCumber
-          </Link>
-        </div>
-        <nav className={styles.nav}>
-          <Link href="/photographs" className={styles.navLink}>
-            photographs
-          </Link>
-          <Link href="/films" className={styles.navLink}>
-            films
-          </Link>
-          <Link href="/writing" className={styles.navLink}>
-            writing
-          </Link>
-          <Link href="/information" className={`${styles.navLink} ${styles.active}`}>
-            information
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       <main className={styles.contentContainer}>
         <div className={styles.bioContainer}>
           <h1 className={styles.bioTitle}>{title}</h1>
-          <div 
+          <div
             className={styles.bioContent}
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
@@ -54,7 +34,7 @@ export function getStaticProps() {
     // Remove await since we changed getInformationContent to be synchronous
     const informationContent = getInformationContent();
     console.log('Received information content:', informationContent);
-    
+
     // Explicitly check for returned data
     if (!informationContent) {
       console.error('No content returned from getInformationContent');
@@ -65,7 +45,7 @@ export function getStaticProps() {
         }
       };
     }
-    
+
     return {
       props: {
         title: informationContent.title || 'About Ethan MacCumber',
