@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
+import VideoThumbnail from '@/components/VideoThumbnail';
 import { getAllFilms } from '@/lib/api';
 import { getMediaUrl } from '@/lib/mediaUrl';
 import Link from 'next/link';
@@ -22,13 +23,7 @@ export default function Films({ films }) {
             key={film.id}
             className={styles.galleryItem}
           >
-            <div className={styles.galleryImageContainer}>
-              <img
-                src={getMediaUrl(film.coverImage)}
-                alt={film.title}
-                className={styles.galleryImage}
-              />
-            </div>
+            <VideoThumbnail film={film} />
             <h2 className={styles.galleryTitle}>{film.title}</h2>
           </Link>
         ))}

@@ -60,6 +60,11 @@ function findFiles(dir, fileList = []) {
   const files = fs.readdirSync(dir);
   
   for (const file of files) {
+    // Skip .DS_Store files
+    if (file === '.DS_Store') {
+      continue;
+    }
+    
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     
@@ -156,13 +161,41 @@ async function main() {
     const files = findFiles(sourceDir);
     console.log(`Found ${files.length} files to upload.`);
     
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      console.log(`[${i+1}/${files.length}] Uploading ${file}...`);
+    // Group files by extension
+    const imageExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const videoExts = ['.mp4', '.webm', '.mov'];
+    
+    const imageFiles = files.filter(file => imageExts.includes(path.extname(file).toLowerCase()));
+    const videoFiles = files.filter(file => videoExts.includes(path.extname(file).toLowerCase()));
+    const otherFiles = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return !imageExts.includes(ext) && !videoExts.includes(ext);
+    });
+    
+    console.log(`Found ${imageFiles.length} images, ${videoFiles.length} videos, and ${otherFiles.length} other files.`);
+    
+    // Process videos for film thumbnails first
+    const thumbnailVideos = videoFiles.filter(file => file.includes('/videos/films/') && path.basename(file) === 'cover.mp4');
+    if (thumbnailVideos.length > 0) {
+      console.log(`\nUploading ${thumbnailVideos.length} film thumbnail videos:`);
+      for (let i = 0; i < thumbnailVideos.length; i++) {
+        const file = thumbnailVideos[i];
+        const projectName = file.split('/videos/films/')[1].split('/')[0];
+        console.log(`[${i+1}/${thumbnailVideos.length}] Uploading thumbnail for "${projectName}"...`);
+        await uploadFile(file, bucket.bucketId);
+      }
+    }
+    
+    // Upload remaining files
+    const remainingFiles = files.filter(file => !thumbnailVideos.includes(file));
+    console.log(`\nUploading ${remainingFiles.length} remaining files:`);
+    for (let i = 0; i < remainingFiles.length; i++) {
+      const file = remainingFiles[i];
+      console.log(`[${i+1}/${remainingFiles.length}] Uploading ${file}...`);
       await uploadFile(file, bucket.bucketId);
     }
     
-    console.log('Upload complete!');
+    console.log('\nUpload complete!');
   } catch (error) {
     console.error('Error:', error.message);
     process.exit(1);

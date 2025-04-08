@@ -8,11 +8,13 @@
         "start": "next start",
         "clean": "node cleanup.js",
         "upload-media": "node upload-to-b2.js",
-        "deploy": "vercel --prod"
+        "deploy": "vercel --prod",
+        "create-thumbnail-dirs": "node create-thumbnail-dirs.js",
+        "verify-videos": "node verify-videos.js"
     },
     "dependencies": {
         "backblaze-b2": "^1.7.0",
-        "dotenv": "^16.3.1",
+        "dotenv": "^16.4.7",
         "gray-matter": "4.0.3",
         "next": "^14.2.26",
         "react": "18.2.0",
