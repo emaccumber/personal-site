@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
 import { getAllFilms } from '@/lib/api';
+import { getMediaUrl } from '@/lib/mediaUrl';
 import Link from 'next/link';
 
 export default function Films({ films }) {
@@ -23,7 +24,7 @@ export default function Films({ films }) {
           >
             <div className={styles.galleryImageContainer}>
               <img
-                src={film.coverImage}
+                src={getMediaUrl(film.coverImage)}
                 alt={film.title}
                 className={styles.galleryImage}
               />

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/ClipView.module.css';
+import { getMediaUrl } from '@/lib/mediaUrl';
 
 export default function PreloadedClipView({
   clips,
@@ -267,7 +268,7 @@ export default function PreloadedClipView({
               key={`video-${index}`}
               ref={el => videoRefs.current[index] = el}
               className={styles.video}
-              src={clip.src}
+              src={getMediaUrl(clip.src)}
               playsInline
               preload="auto"
               style={{

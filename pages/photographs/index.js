@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
 import { getAllPhotoAlbums } from '@/lib/api';
+import { getMediaUrl } from '@/lib/mediaUrl';
 import Link from 'next/link';
 
 export default function Photographs({ albums }) {
@@ -23,7 +24,7 @@ export default function Photographs({ albums }) {
           >
             <div className={styles.galleryImageContainer}>
               <img 
-                src={album.coverImage} 
+                src={getMediaUrl(album.coverImage)} 
                 alt={album.title} 
                 className={styles.galleryImage}
               />

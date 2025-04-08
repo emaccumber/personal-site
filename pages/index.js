@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import Header from '@/components/Header'
+import { getMediaUrl } from '@/lib/mediaUrl'
 
 export default function Home() {
   return (
@@ -16,9 +17,9 @@ export default function Home() {
       <main className={styles.main}>
         {/* Main featured image */}
         <div className={styles.featuredImageContainer}>
-          <img 
-            src="/images/featured.jpg"
-            alt="Featured photograph" 
+          <img
+            src={getMediaUrl('/images/featured.jpg')}
+            alt="Featured photograph"
             className={styles.featuredImage}
           />
         </div>

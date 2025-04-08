@@ -1,5 +1,13 @@
-.next
+gco.next
 .DS_Store
 node_modules
 public
 .env.local
+.env
+.env.*
+!.env.example
+!.env.b2.example
+.vercel
+.next
+build
+out
