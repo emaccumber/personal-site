@@ -1,16 +1,18 @@
 # Personal Website
 
-A minimal and fast personal website for showcasing photography, videography, and blog content.
+A minimal and elegant personal website for showcasing photography, videography, and writing. Built with Next.js for performance and flexibility.
 
 ## Features
 
-- Photography portfolio
-- Videography showcase
-- Blog (future)
-- Fast performance
+- Photography portfolio with album organization
+- Videography showcase with interactive thumbnails
+- Blog/writing section with markdown support
+- Information/about page
+- Fast performance and SEO-friendly
 - Simple content management using markdown and JSON files
 - Mobile-responsive design with hamburger menu
 - Media assets served from Backblaze B2
+- Clean minimalist design that puts content first
 
 ## Getting Started
 
@@ -43,11 +45,41 @@ This site is configured for deployment with Vercel and uses Backblaze B2 for med
 
 ## File Structure
 
-- `/components`: React components
-- `/lib`: Utility functions and API
-- `/pages`: Next.js pages
+- `/components`: React components for UI elements and media rendering
+- `/lib`: Utility functions and API for content management
+- `/pages`: Next.js pages and routing
 - `/public`: Static assets for local development
-- `/styles`: CSS modules
+- `/styles`: CSS modules for component styling
+- `/_content`: JSON and markdown files for content management
+
+## Content Management
+
+Content is managed using a combination of JSON and markdown files in the `/_content` directory:
+
+### Photography Albums
+
+- `/_content/photographs/albums.json`: List of all photography albums with metadata
+- `/_content/photographs/[album-slug].json`: Individual album with photo list and descriptions
+
+### Films & Videos
+
+- `/_content/films/films.json`: List of all films and moving image albums
+- `/_content/films/[film-slug].json`: Individual film or moving image album details
+
+### Writing/Blog
+
+- `/_content/writing/[slug].md`: Markdown files for blog posts with frontmatter
+
+### Information/About
+
+- `/_content/information/about.md`: Markdown file with about page content
+
+### Adding New Content
+
+1. **Photos**: Add photos to `/public/images/photographs/[album-slug]/`, then update the corresponding JSON files
+2. **Films**: Add video files to `/public/videos/films/[film-slug]/`, then update the films JSON files
+3. **Writing**: Create a new markdown file in `/_content/writing/` with proper frontmatter
+4. **About**: Update the `/_content/information/about.md` file
 
 ## Media URL Handling
 
