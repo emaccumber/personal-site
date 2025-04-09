@@ -5,14 +5,15 @@
         "title": "Months at Home",
         "slug": "months-at-home",
         "description": "A documentary about life during lockdown",
-        "coverImage": "/images/films/months-at-home/cover.jpg"
+        "coverImage": "/images/films/months-at-home/cover.jpg",
+        "coverVideo": "/videos/films/months-at-home/cover.mp4"
       },
       {
         "id": "16mm-project",
         "title": "16mm Film Sketches",
         "slug": "16mm-project",
         "description": "Brief description of your album",
-        "coverImage": "/images/films/16mm-project/cover.jpg",
+        "coverImage": "/videos/films/16mm-project/cover.mp4",
         "type": "moving-image-album"
       }
     ]
