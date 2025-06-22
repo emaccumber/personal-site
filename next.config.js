@@ -2,11 +2,21 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'localhost',
-      // Extract the domain from the NEXT_PUBLIC_MEDIA_URL if set
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'localhost',
+      },
+      // Add pattern for Backblaze B2 or Cloudflare CDN
       ...(process.env.NEXT_PUBLIC_MEDIA_URL 
-        ? [new URL(process.env.NEXT_PUBLIC_MEDIA_URL).hostname] 
+        ? [{
+            protocol: 'https',
+            hostname: new URL(process.env.NEXT_PUBLIC_MEDIA_URL).hostname,
+          }]
         : [])
     ],
   },

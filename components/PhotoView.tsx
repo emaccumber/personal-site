@@ -2,8 +2,16 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
+import type { Photo } from '@/types';
 
-export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos }) {
+interface Props {
+  photo: Photo;
+  albumSlug: string;
+  photoIndex: number;
+  totalPhotos: number;
+}
+
+export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos }: Props) {
   const router = useRouter();
   const isFirst = photoIndex === 0;
   const isLast = photoIndex === totalPhotos - 1;
@@ -40,6 +48,12 @@ export default function PhotoView({ photo, albumSlug, photoIndex, totalPhotos })
         <img
           src={photo.src}
           alt={photo.caption || 'Photograph'}
+          style={{
+            width: 'auto',
+            height: 'auto',
+            maxWidth: '100%',
+            maxHeight: '80vh'
+          }}
           className={`${styles.photo} ${!isLast ? styles.clickable : ''}`}
           onClick={handlePhotoClick}
         />

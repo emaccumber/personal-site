@@ -2,8 +2,14 @@ import React, { useRef, useState } from 'react';
 import styles from '@/styles/Home.module.css';
 import videoStyles from '@/styles/VideoThumbnail.module.css';
 
-export default function VideoThumbnail({ src, alt, filmSlug }) {
-  const videoRef = useRef(null);
+interface Props {
+  src: string;
+  alt: string;
+  filmSlug: string;
+}
+
+export default function VideoThumbnail({ src, alt, filmSlug }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [hasEnded, setHasEnded] = useState(false);
   
   // Simply play on hover

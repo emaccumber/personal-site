@@ -126,19 +126,15 @@
 }
 
 .featuredImageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 100%;
+  height: calc(100vh - 110px); /* Subtract header height and padding */
   padding: 20px;
   overflow: hidden;
 }
 
 .featuredImage {
-  max-width: 100%;
-  max-height: calc(100vh - 110px); /* Subtract header height and padding */
   object-fit: contain;
-  display: block;
 }
 
 .galleryContainer {

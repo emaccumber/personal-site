@@ -10,7 +10,13 @@ export default function Writing({ posts }) {
     <div className={styles.container}>
       <Head>
         <title>Writing | Ethan MacCumber</title>
-        <meta name="description" content="Writings by Ethan MacCumber" />
+        <meta name="description" content="Essays and writings by Ethan MacCumber on photography, film, and visual culture." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="Writing | Ethan MacCumber" />
+        <meta property="og:description" content="Essays and writings by Ethan MacCumber on photography, film, and visual culture." />
+        <meta property="og:url" content="https://ethanmaccumber.com/writing" />
+        <meta name="twitter:title" content="Writing | Ethan MacCumber" />
+        <meta name="twitter:description" content="Essays and writings by Ethan MacCumber on photography, film, and visual culture." />
       </Head>
 
       <Header />

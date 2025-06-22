@@ -6,8 +6,14 @@ import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
 import AlbumView from '@/components/AlbumView';
 import { getAllPhotoAlbums, getPhotoAlbumBySlug } from '@/lib/api';
+import type { PhotoAlbum } from '@/types';
+import type { GetStaticProps, GetStaticPaths } from 'next';
 
-export default function AlbumPage({ album }) {
+interface Props {
+  album: PhotoAlbum;
+}
+
+export default function AlbumPage({ album }: Props) {
   const router = useRouter();
   const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
 
@@ -56,8 +62,8 @@ export default function AlbumPage({ album }) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  const album = getPhotoAlbumBySlug(params.album);
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const album = getPhotoAlbumBySlug(params?.album as string);
 
   if (!album) {
     return {
@@ -68,9 +74,9 @@ export async function getStaticProps({ params }) {
   return {
     props: { album }
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const albums = getAllPhotoAlbums();
 
   return {
@@ -79,4 +85,4 @@ export async function getStaticPaths() {
     })),
     fallback: false
   };
-}
+};

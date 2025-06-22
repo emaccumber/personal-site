@@ -1,10 +1,10 @@
 /**
  * Utility function to get the correct URL for media assets
  * This handles switching between local public folder and Backblaze B2 bucket
- * @param {string} path - Path to the media file, relative to public folder
- * @returns {string} - Full URL to the media file
+ * @param path - Path to the media file, relative to public folder
+ * @returns Full URL to the media file
  */
-export function getMediaUrl(path) {
+export function getMediaUrl(path: string): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   
