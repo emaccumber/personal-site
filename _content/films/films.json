@@ -5,8 +5,7 @@
         "title": "Months at Home",
         "slug": "months-at-home",
         "description": "A documentary about life during lockdown",
-        "coverImage": "/images/films/months-at-home/cover.jpg",
-        "coverVideo": "/videos/films/months-at-home/cover.mp4"
+        "coverImage": "/videos/films/months-at-home/cover.mp4"
       },
       {
         "id": "16mm-project",
