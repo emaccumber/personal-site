@@ -13,6 +13,34 @@
         "slug": "camogli",
         "description": "Scenes from Camogli",
         "coverImage": "/images/photographs/camogli/cover.jpg"
+      },
+            {
+        "id": "party",
+        "title": "Party",
+        "slug": "party",
+        "description": "",
+        "coverImage": "/images/photographs/party/cover.jpg"
+      },
+            {
+        "id": "iowa",
+        "title": "Iowa",
+        "slug": "iowa",
+        "description": "",
+        "coverImage": "/images/photographs/iowa/cover.jpg"
+      },
+            {
+        "id": "rabat",
+        "title": "Rabat",
+        "slug": "camogli",
+        "description": "",
+        "coverImage": "/images/photographs/rabat/cover.jpg"
+      },
+                  {
+        "id": "graduation",
+        "title": "Graduates",
+        "slug": "graduation",
+        "description": "",
+        "coverImage": "/images/photographs/graduation/cover.jpg"
       }
     ]
   }
