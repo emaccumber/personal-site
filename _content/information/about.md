@@ -2,11 +2,8 @@
 title: About Ethan MacCumber
 ---
 
-I am a photographer and filmmaker based in [Your Location]. My work focuses on [your focus/style/interests].
-
-[Add more about your background, approach, and interests]
+I spend most of my time working on quantitative models in New York. I take photos too, sometimes 24 times a second.
 
 ## Contact
 
-Email: [your.email@example.com](mailto:your.email@example.com)  
-Instagram: [@yourusername](https://instagram.com/yourusername)
+Instagram: [@emaccumber](https://instagram.com/emaccumber)

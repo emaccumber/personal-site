@@ -1,41 +1,41 @@
 {
     "albums": [
       {
+        "id": "rabat",
+        "title": "Rabat",
+        "slug": "rabat",
+        "description": "These photographs will accompany an upcoming book about the history of women's health in Morocco. All were taken at l'Hôpital de Maternité et Santé Reproductrice les Orangers.",
+        "coverImage": "/images/photographs/rabat/cover.jpg"
+      },
+      {
         "id": "tamarac",
         "title": "Tamarac",
         "slug": "tamarac",
-        "description": "Tamarac series",
+        "description": "",
         "coverImage": "/images/photographs/tamarac/cover.jpg"
       },
       {
         "id": "camogli",
         "title": "Camogli",
         "slug": "camogli",
-        "description": "Scenes from Camogli",
+        "description": "",
         "coverImage": "/images/photographs/camogli/cover.jpg"
       },
-            {
-        "id": "party",
-        "title": "Party",
-        "slug": "party",
-        "description": "",
-        "coverImage": "/images/photographs/party/cover.jpg"
-      },
-            {
+      {
         "id": "iowa",
         "title": "Iowa",
         "slug": "iowa",
         "description": "",
         "coverImage": "/images/photographs/iowa/cover.jpg"
       },
-            {
-        "id": "rabat",
-        "title": "Rabat",
-        "slug": "camogli",
+      {
+        "id": "party",
+        "title": "Party",
+        "slug": "party",
         "description": "",
-        "coverImage": "/images/photographs/rabat/cover.jpg"
+        "coverImage": "/images/photographs/party/cover.jpg"
       },
-                  {
+      {
         "id": "graduation",
         "title": "Graduates",
         "slug": "graduation",

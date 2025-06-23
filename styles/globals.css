@@ -19,8 +19,12 @@ a {
 
 /* Dark mode styles */
 body.dark-mode {
-  background: #000;
+  background: #000 !important;
   color: #e0e0e0;
+}
+
+html:has(body.dark-mode) {
+  background: #000 !important;
 }
 
 body.dark-mode h1,

@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  padding: 18px;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .clipContainer {
+    padding: 12px;
+  }
 }
 
 .clipWrapper {
@@ -109,14 +115,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 2px;
+  width: 100%;
 }
 
 .caption {
   margin: 0;
   text-align: right;
-  font-size: 14px;
-  flex-grow: 1;
+  font-size: 12px;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .arrowNavigation {

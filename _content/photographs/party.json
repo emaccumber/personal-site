@@ -1,0 +1,50 @@
+{
+  "id": "party",
+  "title": "Party",
+  "slug": "party",
+  "description": "",
+  "photos": [
+    {
+      "id": 1,
+      "src": "/images/photographs/party/1.jpg",
+      "caption": "Halloween, Queens, 2021",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "src": "/images/photographs/party/2.jpg",
+      "caption": "Scotty's Birthday, Brooklyn, 2022",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "src": "/images/photographs/party/3.jpg",
+      "caption": "Scotty's Birthday, Brooklyn, 2022",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "src": "/images/photographs/party/4.jpg",
+      "caption": "Halloween, Brooklyn, 2022",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "src": "/images/photographs/party/5.jpg",
+      "caption": "Chiara's Birthday, France, 2024",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "src": "/images/photographs/party/6.jpg",
+      "caption": "Chiara's Birthday, France, 2024",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "src": "/images/photographs/party/7.jpg",
+      "caption": "Chiara's Birthday, France, 2024",
+      "description": ""
+    }
+  ]
+}

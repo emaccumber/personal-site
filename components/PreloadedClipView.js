@@ -256,7 +256,7 @@ export default function PreloadedClipView({
         style={{
           // Set a fixed aspect ratio container to prevent layout shifts
           position: 'relative',
-          paddingBottom: '75%', // 4:3 aspect ratio (was 56.25% for 16:9)
+          paddingBottom: '60%', // Reduced from 75% to leave space for controls
           height: 0,
           overflow: 'hidden'
         }}

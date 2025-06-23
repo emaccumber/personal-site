@@ -5,12 +5,20 @@
  * @returns Full URL to the media file
  */
 export function getMediaUrl(path: string): string {
-  // Remove leading slash if present
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  // Handle undefined or null paths
+  if (!path) {
+    console.warn('getMediaUrl called with undefined or null path');
+    return '';
+  }
   
   // If NEXT_PUBLIC_MEDIA_URL is set, use it as the base URL
-  // Otherwise, use relative path for local development
-  const baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || '';
+  if (process.env.NEXT_PUBLIC_MEDIA_URL) {
+    // Remove leading slash if present for Backblaze URL
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${process.env.NEXT_PUBLIC_MEDIA_URL}/${cleanPath}`;
+  }
   
-  return `${baseUrl}/${cleanPath}`;
+  // Otherwise, return the path as-is for local development
+  // This assumes images are in the public folder
+  return path;
 }

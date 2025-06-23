@@ -1,0 +1,74 @@
+{
+  "id": "iowa",
+  "title": "Iowa",
+  "slug": "iowa",
+  "description": "",
+  "photos": [
+    {
+      "id": 1,
+      "src": "/images/photographs/iowa/1.jpg",
+      "caption": "American Legion Park, West Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "src": "/images/photographs/iowa/2.jpg",
+      "caption": "Madison County Fair, Winterset, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "src": "/images/photographs/iowa/3.jpg",
+      "caption": "Madison County Fair, Winterset, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "src": "/images/photographs/iowa/4.jpg",
+      "caption": "Snookies Malt Shop, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "src": "/images/photographs/iowa/5.jpg",
+      "caption": "Snookies Malt Shop, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "src": "/images/photographs/iowa/6.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "src": "/images/photographs/iowa/7.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 8,
+      "src": "/images/photographs/iowa/8.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 9,
+      "src": "/images/photographs/iowa/9.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 10,
+      "src": "/images/photographs/iowa/10.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "src": "/images/photographs/iowa/11.jpg",
+      "caption": "Iowa State Fair, Des Moines, Iowa, 2019",
+      "description": ""
+    }
+  ]
+}

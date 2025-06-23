@@ -1,0 +1,74 @@
+{
+  "id": "rabat",
+  "title": "Rabat",
+  "slug": "rabat",
+  "description": "These photographs will accompany an upcoming book about the history of women's health in Morocco. All were taken at l'Hôpital de Maternité et Santé Reproductrice les Orangers.",
+  "photos": [
+    {
+      "id": 1,
+      "src": "/images/photographs/rabat/1.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "src": "/images/photographs/rabat/2.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "src": "/images/photographs/rabat/3.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "src": "/images/photographs/rabat/4.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "src": "/images/photographs/rabat/5.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "src": "/images/photographs/rabat/6.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "src": "/images/photographs/rabat/7.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 8,
+      "src": "/images/photographs/rabat/8.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 9,
+      "src": "/images/photographs/rabat/9.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 10,
+      "src": "/images/photographs/rabat/10.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "src": "/images/photographs/rabat/11.jpg",
+      "caption": "Rabat, Morocco, 2024",
+      "description": ""
+    }
+  ]
+}

@@ -20,7 +20,11 @@ export default function AlbumPage({ album }: Props) {
   useEffect(() => {
     // Check if there's a photo query parameter
     if (router.isReady && router.query.photo) {
-      const photoIndex = parseInt(router.query.photo, 10) - 1; // Convert from 1-based to 0-based
+      // Handle case where photo could be string or string[]
+      const photoParam = Array.isArray(router.query.photo) 
+        ? router.query.photo[0] 
+        : router.query.photo;
+      const photoIndex = parseInt(photoParam, 10) - 1; // Convert from 1-based to 0-based
       if (!isNaN(photoIndex) && photoIndex >= 0 && photoIndex < album.photos.length) {
         setInitialPhotoIndex(photoIndex);
       }

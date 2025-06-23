@@ -1,0 +1,110 @@
+{
+  "id": "graduation",
+  "title": "Graduates",
+  "slug": "graduation",
+  "description": "",
+  "photos": [
+    {
+      "id": 1,
+      "src": "/images/photographs/graduation/1.jpg",
+      "caption": "University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "src": "/images/photographs/graduation/2.jpg",
+      "caption": "Chiara, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "src": "/images/photographs/graduation/3.jpg",
+      "caption": "Chiara, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "src": "/images/photographs/graduation/4.jpg",
+      "caption": "Chiara, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "src": "/images/photographs/graduation/5.jpg",
+      "caption": "Chiara, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "src": "/images/photographs/graduation/6.jpg",
+      "caption": "Firouz and Chiara, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "src": "/images/photographs/graduation/7.jpg",
+      "caption": "Michael, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 8,
+      "src": "/images/photographs/graduation/8.jpg",
+      "caption": "Jon, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 9,
+      "src": "/images/photographs/graduation/9.jpg",
+      "caption": "University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 10,
+      "src": "/images/photographs/graduation/10.jpg",
+      "caption": "University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "src": "/images/photographs/graduation/11.jpg",
+      "caption": "University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "src": "/images/photographs/graduation/12.jpg",
+      "caption": "Praveen, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "src": "/images/photographs/graduation/13.jpg",
+      "caption": "Khanh, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 14,
+      "src": "/images/photographs/graduation/14.jpg",
+      "caption": "Khanh and Devika, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 15,
+      "src": "/images/photographs/graduation/15.jpg",
+      "caption": "Devika, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 16,
+      "src": "/images/photographs/graduation/16.jpg",
+      "caption": "Khanh and Devika, University of Chicago, 2021",
+      "description": ""
+    },
+    {
+      "id": 17,
+      "src": "/images/photographs/graduation/17.jpg",
+      "caption": "Khanh and Devika, University of Chicago, 2021",
+      "description": ""
+    }
+  ]
+}

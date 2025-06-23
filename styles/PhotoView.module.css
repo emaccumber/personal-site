@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  padding: 18px;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .photoContainer {
+    padding: 12px;
+  }
 }
 
 .imageContainer {
@@ -49,9 +55,9 @@
 }
 
 .caption {
-  margin-top: 10px;
+  margin-top: 5px;
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
   align-self: stretch;
 }
 

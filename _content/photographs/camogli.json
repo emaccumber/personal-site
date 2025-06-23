@@ -1,60 +1,60 @@
 {
     "title": "Camogli",
-    "description": "Scenes from Camogli, Italy",
+    "description": "",
     "photos": [
       {
         "id": 1,
         "src": "/images/photographs/camogli/1.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Colorful coastal houses overlooking the Mediterranean Sea."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 2,
         "src": "/images/photographs/camogli/2.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Boats in the harbor at sunset."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 3,
         "src": "/images/photographs/camogli/3.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Narrow streets winding through the village."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 4,
         "src": "/images/photographs/camogli/4.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Fishermen's boats along the shore."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 5,
         "src": "/images/photographs/camogli/5.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Evening light on the seaside buildings."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 6,
         "src": "/images/photographs/camogli/6.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Views from the harbor looking back to town."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 7,
         "src": "/images/photographs/camogli/7.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Mediterranean vista from local viewpoint."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 8,
         "src": "/images/photographs/camogli/8.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Architectural details of historic buildings."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       },
       {
         "id": 9,
         "src": "/images/photographs/camogli/9.jpg",
-        "caption": "Camogli, Italy, 2024",
-        "description": "Local cafe on the waterfront promenade."
+        "caption": "Camogli, Italy, 2019",
+        "description": ""
       }
     ]
   }

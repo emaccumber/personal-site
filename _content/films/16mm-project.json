@@ -1,60 +1,60 @@
 {
-  "title": "16mm Film Sketches",
-  "description": "A collection of short clips captured on 16mm film",
-  "date": "2024",
+  "title": "Lakeview / Hyde Park",
+  "description": "These images represent the backdrops of my life in Chicago. © 2020",
+  "date": "2020",
   "clips": [
     {
       "id": 1,
       "src": "/videos/films/16mm-project/1.mp4",
-      "caption": "Location 1, 2024",
+      "caption": "a place to run, washington park",
       "description": "Scene from first 16mm film clip."
     },
     {
       "id": 2,
       "src": "/videos/films/16mm-project/2.mp4",
-      "caption": "Location 2, 2024",
+      "caption": "view from behind my childhood house, lakeview",
       "description": "Scene from second 16mm film clip."
     },
     {
       "id": 3,
       "src": "/videos/films/16mm-project/3.mp4",
-      "caption": "Location 3, 2024",
+      "caption": "where I would eat and study, hyde park",
       "description": "Scene from third 16mm film clip."
     },
     {
       "id": 4,
       "src": "/videos/films/16mm-project/4.mp4",
-      "caption": "Location 4, 2024",
+      "caption": "view of middle school from the park, old town",
       "description": "Scene from fourth 16mm film clip."
     },
     {
       "id": 5,
       "src": "/videos/films/16mm-project/5.mp4",
-      "caption": "Location 5, 2024",
+      "caption": "pickup basketball games played here, lakeview",
       "description": "Scene from fifth 16mm film clip."
     },
     {
       "id": 6,
       "src": "/videos/films/16mm-project/6.mp4",
-      "caption": "Location 6, 2024",
+      "caption": "dad and david at home, lakeview",
       "description": "Scene from sixth 16mm film clip."
     },
     {
       "id": 7,
       "src": "/videos/films/16mm-project/7.mp4",
-      "caption": "Location 7, 2024",
+      "caption": "view of my parents' room from the hallway, lakeview",
       "description": "Scene from seventh 16mm film clip."
     },
     {
       "id": 8,
       "src": "/videos/films/16mm-project/8.mp4",
-      "caption": "Location 8, 2024",
+      "caption": "the view outside my college bedroom, hyde park",
       "description": "Scene from eighth 16mm film clip."
     },
     {
       "id": 9,
       "src": "/videos/films/16mm-project/9.mp4",
-      "caption": "Location 9, 2024",
+      "caption": "abi and mom at home, lakeview",
       "description": "Scene from ninth 16mm film clip."
     }
   ]
