@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import gfm from 'remark-gfm'
 
 // Use absolute paths for better debugging
 const contentDirectory = path.join(process.cwd(), '_content')
@@ -361,8 +362,9 @@ export function getWritingPostBySlug(slug) {
     // Parse markdown front matter and content
     const { data, content } = matter(fileContents);
 
-    // Process markdown content to HTML
+    // Process markdown content to HTML with GFM support (tables, etc.)
     const processedContent = remark()
+      .use(gfm)
       .use(html)
       .processSync(content)
       .toString();
@@ -417,8 +419,9 @@ export function getInformationContent() {
     const { data, content } = matter(fileContents);
     console.log('Front matter data:', data);
 
-    // Process markdown content to HTML (using the exact same approach as in getWritingPostBySlug)
+    // Process markdown content to HTML with GFM support (tables, etc.)
     const processedContent = remark()
+      .use(gfm)
       .use(html)
       .processSync(content)
       .toString();
