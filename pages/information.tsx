@@ -10,7 +10,13 @@ export default function Information({ title, contentHtml }) {
     <div className={styles.container}>
       <Head>
         <title>Information | Ethan MacCumber</title>
-        <meta name="description" content="About Ethan MacCumber" />
+        <meta name="description" content="About Ethan MacCumber - photographer and filmmaker. Learn about the artist and contact information." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="Information | Ethan MacCumber" />
+        <meta property="og:description" content="About Ethan MacCumber - photographer and filmmaker. Learn about the artist and contact information." />
+        <meta property="og:url" content="https://ethanmaccumber.com/information" />
+        <meta name="twitter:title" content="Information | Ethan MacCumber" />
+        <meta name="twitter:description" content="About Ethan MacCumber - photographer and filmmaker. Learn about the artist and contact information." />
       </Head>
 
       <Header />

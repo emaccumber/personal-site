@@ -4,20 +4,20 @@ import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const router = useRouter();
   
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setMenuOpen(!menuOpen);
   };
 
   // Close menu when route changes
-  const handleLinkClick = () => {
+  const handleLinkClick = (): void => {
     setMenuOpen(false);
   };
 
   // Helper function to check if a link is active
-  const isActive = (path) => {
+  const isActive = (path: string): boolean => {
     return router.pathname === path || 
            (path !== '/' && router.pathname.startsWith(path));
   };

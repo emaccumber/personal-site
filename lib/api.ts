@@ -145,6 +145,7 @@ export function getAllFilms() {
   try {
     // Import films data from JSON file
     const films = require('../_content/films/films.json').films;
+    console.log("Original films data:", JSON.stringify(films, null, 2));
 
     // Return all films, but mark moving image albums for special handling in UI
     return films.map(film => {

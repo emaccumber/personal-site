@@ -2,13 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/PhotoView.module.css';
 import { getMediaUrl } from '@/lib/mediaUrl';
+import type { PhotoAlbum } from '@/types';
 
-export default function AlbumView({ album, initialPhotoIndex = 0 }) {
+interface Props {
+  album: PhotoAlbum;
+  initialPhotoIndex?: number;
+}
+
+export default function AlbumView({ album, initialPhotoIndex = 0 }: Props) {
   const router = useRouter();
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(initialPhotoIndex);
   const totalPhotos = album.photos.length;
   
-  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const isFirst = currentPhotoIndex === 0;
   const isLast = currentPhotoIndex === totalPhotos - 1;
@@ -89,18 +95,15 @@ export default function AlbumView({ album, initialPhotoIndex = 0 }) {
             <img
               src={getMediaUrl(currentPhoto.src)}
               alt={currentPhoto.caption || 'Photograph'}
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: '100%',
+                maxHeight: '80vh'
+              }}
               className={`${styles.photo} ${!isLast ? styles.clickable : ''} ${isImageLoading ? styles.fadeOut : styles.fadeIn}`}
               onClick={handlePhotoClick}
               onLoad={() => setIsImageLoading(false)}
-              ref={(el) => {
-                // This helps ensure the caption width matches the image width
-                if (el) {
-                  const captionEl = el.parentNode.parentNode.querySelector(`.${styles.caption}`);
-                  if (captionEl) {
-                    captionEl.style.width = `${el.width}px`;
-                  }
-                }
-              }}
             />
           </div>
           {currentPhoto.caption && (

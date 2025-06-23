@@ -1,0 +1,20 @@
+.videoThumbnailContainer {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.videoThumbnail {
+  object-fit: contain; /* Preserve aspect ratio */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-position: left top; /* Match the photographs implementation */
+}
+
+/* Remove hover scaling effect */
+/* Style for ended videos */
+.videoThumbnail.ended {
+  cursor: default;
+}
