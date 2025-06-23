@@ -156,3 +156,84 @@
   color: #000;
   text-decoration: none;
 }
+
+/* Responsive styles for mobile and narrow screens */
+@media (max-width: 768px) {
+  .writingContainer {
+    padding: 20px 16px;
+  }
+
+  .postContainer {
+    padding: 20px 16px;
+  }
+
+  .postHeader .postTitle {
+    font-size: 24px;
+  }
+
+  .postContent {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .postContent h2 {
+    font-size: 20px;
+    margin: 30px 0 16px;
+  }
+
+  .postContent h3 {
+    font-size: 18px;
+    margin: 24px 0 12px;
+  }
+
+  .postContent table {
+    font-size: 14px;
+    margin: 20px 0;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .postContent th,
+  .postContent td {
+    padding: 8px;
+    white-space: nowrap;
+  }
+
+  .postContent pre {
+    padding: 12px;
+    font-size: 14px;
+    margin: 20px 0;
+  }
+
+  .postContent blockquote {
+    margin: 20px 0;
+    padding-left: 16px;
+  }
+
+  .postContent ul,
+  .postContent ol {
+    padding-left: 20px;
+    margin: 16px 0;
+  }
+
+  .postItem {
+    font-size: 16px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .postContainer {
+    padding: 16px 12px;
+  }
+
+  .postContent table {
+    font-size: 12px;
+  }
+
+  .postContent th,
+  .postContent td {
+    padding: 6px;
+  }
+}
