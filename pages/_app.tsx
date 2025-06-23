@@ -8,6 +8,23 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const savedMode = localStorage.getItem('darkMode');
+                if (savedMode === 'true') {
+                  document.body.classList.add('dark-mode');
+                } else if (savedMode === null) {
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (prefersDark) {
+                    document.body.classList.add('dark-mode');
+                  }
+                }
+              })();
+            `,
+          }}
+        />
       </Head>
       <ErrorBoundary>
         <Component {...pageProps} />

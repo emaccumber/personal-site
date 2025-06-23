@@ -35,6 +35,11 @@
   font-weight: normal;
 }
 
+/* Dark mode adjustments */
+:global(body.dark-mode) .postDate {
+  color: #888;
+}
+
 /* Individual post page styles */
 .postContainer {
   max-width: 840px;

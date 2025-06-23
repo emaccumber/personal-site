@@ -96,3 +96,12 @@
   margin-top: 20px;
   line-height: 1.6;
 }
+
+/* Dark mode styles */
+:global(body.dark-mode) .navArrow {
+  color: #e0e0e0;
+}
+
+:global(body.dark-mode) .navArrow.disabled {
+  opacity: 0.3;
+}
