@@ -45,11 +45,12 @@ export default function AltairChart({ spec, width, height, className }: AltairCh
       chartSpec = spec;
     }
 
-    // Apply width and height if provided, otherwise use container width
+    // Apply width and height with mobile responsiveness
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     chartSpec = {
       ...chartSpec,
-      width: width || 'container',
-      height: height || (chartSpec as any).height || 300,
+      width: width || (isMobile ? Math.min(window.innerWidth - 40, 600) : 'container'),
+      height: height || (chartSpec as any).height || (isMobile ? 250 : 300),
     };
 
     // Vega-Embed options
@@ -98,11 +99,12 @@ export default function AltairChart({ spec, width, height, className }: AltairCh
             chartSpec = spec;
           }
 
-          // Apply width and height, using container width by default
+          // Apply width and height with mobile responsiveness
+          const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
           chartSpec = {
             ...chartSpec,
-            width: width || 'container',
-            height: height || (chartSpec as any).height || 300,
+            width: width || (isMobile ? Math.min(window.innerWidth - 40, 600) : 'container'),
+            height: height || (chartSpec as any).height || (isMobile ? 250 : 300),
           };
 
           window.vegaEmbed(chartRef.current, chartSpec, embedOptions);
@@ -137,7 +139,9 @@ export default function AltairChart({ spec, width, height, className }: AltairCh
         width: '100%', 
         minHeight: height || 300,
         margin: '20px 0',
-        display: 'block'
+        display: 'block',
+        overflowX: 'auto',
+        WebkitOverflowScrolling: 'touch'
       }}
     />
   );
