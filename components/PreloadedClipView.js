@@ -16,6 +16,7 @@ export default function PreloadedClipView({
   const [isMouseInteracting, setIsMouseInteracting] = useState(false);
   const [videoDurations, setVideoDurations] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const mouseMovementRef = useRef(0);
   const lastMouseXRef = useRef({ x: 0, y: 0 });
@@ -26,9 +27,18 @@ export default function PreloadedClipView({
   const isLast = currentClipIndex === totalClips - 1;
   const currentClip = clips[currentClipIndex];
 
-  // Set mounted state to true after initial render
+  // Set mounted state to true after initial render and detect mobile
   useEffect(() => {
     setIsMounted(true);
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
   // Initialize video refs
@@ -141,9 +151,9 @@ export default function PreloadedClipView({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentClipIndex, isFirst, isLast, isPlaying, onNextClip, onPrevClip, isMounted]);
   
-  // Mouse movement handler for frame-by-frame scrubbing
+  // Mouse movement handler for frame-by-frame scrubbing (desktop only)
   const handleMouseMove = (e) => {
-    if (isPlaying || !isMouseInteracting) return;
+    if (isMobile || isPlaying || !isMouseInteracting) return;
     
     const video = videoRefs.current[currentClipIndex];
     if (!video) return;
@@ -188,7 +198,7 @@ export default function PreloadedClipView({
   };
   
   const handleMouseEnter = (e) => {
-    if (isPlaying) return;
+    if (isMobile || isPlaying) return;
     
     // Initialize mouse tracking
     setIsMouseInteracting(true);
@@ -206,7 +216,9 @@ export default function PreloadedClipView({
   };
   
   const handleMouseLeave = () => {
-    setIsMouseInteracting(false);
+    if (!isMobile) {
+      setIsMouseInteracting(false);
+    }
   };
   
   const togglePlayPause = () => {
@@ -251,9 +263,9 @@ export default function PreloadedClipView({
       >
         <div
           className={styles.videoContainer}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseMove={isMobile ? undefined : handleMouseMove}
+          onMouseEnter={isMobile ? undefined : handleMouseEnter}
+          onMouseLeave={isMobile ? undefined : handleMouseLeave}
           style={{
             position: 'absolute',
             top: 0,

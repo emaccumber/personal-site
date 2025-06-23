@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import videoStyles from '@/styles/VideoThumbnail.module.css';
 
@@ -11,9 +11,24 @@ interface Props {
 export default function VideoThumbnail({ src, alt, filmSlug }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasEnded, setHasEnded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Simply play on hover
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Simply play on hover (desktop only)
   const handleMouseEnter = () => {
+    if (isMobile) return; // Disable on mobile
+    
     const video = videoRef.current;
     if (!video || hasEnded) return;
     
@@ -26,8 +41,10 @@ export default function VideoThumbnail({ src, alt, filmSlug }: Props) {
     video.play();
   };
   
-  // Simply pause on leave
+  // Simply pause on leave (desktop only)
   const handleMouseLeave = () => {
+    if (isMobile) return; // Disable on mobile
+    
     const video = videoRef.current;
     if (!video) return;
     
