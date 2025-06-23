@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 import writingStyles from '@/styles/Writing.module.css';
 import Header from '@/components/Header';
+import AltairRenderer from '@/components/AltairRenderer';
 import { getAllWritingPosts, getWritingPostBySlug } from '@/lib/api';
 
 export default function Post({ post }) {
@@ -40,6 +41,7 @@ export default function Post({ post }) {
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         </article>
+        <AltairRenderer />
       </main>
     </div>
   );

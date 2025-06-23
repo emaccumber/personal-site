@@ -2,8 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
-import html from 'remark-html'
 import gfm from 'remark-gfm'
+import directive from 'remark-directive'
+import remarkRehype from 'remark-rehype'
+import rehypeRaw from 'rehype-raw'
+import rehypeStringify from 'rehype-stringify'
+import { visit } from 'unist-util-visit'
 
 // Use absolute paths for better debugging
 const contentDirectory = path.join(process.cwd(), '_content')
@@ -18,6 +22,89 @@ const informationDirectory = path.join(contentDirectory, 'information')
 
 // Log information directory for debugging
 console.log('Information directory path:', informationDirectory)
+
+// Remark plugin to handle Altair chart directives
+function altairDirective() {
+  return (tree: any) => {
+    visit(tree, (node) => {
+      if (
+        node.type === 'containerDirective' ||
+        node.type === 'leafDirective' ||
+        node.type === 'textDirective'
+      ) {
+        if (node.name !== 'altair') return
+
+        const data = node.data || (node.data = {})
+        const attributes = node.attributes || {}
+        
+        // Get chart spec from node content or attributes
+        let content = ''
+        
+        if (attributes.src) {
+          // Load from external file (not implemented yet)
+          console.log('External file loading not implemented')
+          return
+        } else if (node.children && node.children.length > 0) {
+          // Get spec from content - handle all types of children
+          content = node.children
+            .map((child: any) => {
+              if (child.type === 'code') {
+                return child.value
+              } else if (child.type === 'text') {
+                return child.value
+              } else if (child.type === 'paragraph' && child.children) {
+                return child.children
+                  .map((grandchild: any) => grandchild.value || '')
+                  .join('')
+              }
+              return ''
+            })
+            .join('')
+            .trim()
+          
+          if (content) {
+            try {
+              // Validate JSON
+              const parsedSpec = JSON.parse(content)
+              
+              // Escape the JSON content for HTML attribute
+              const escapedContent = content
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+              
+              data.hName = 'div'
+              data.hProperties = {
+                className: 'altair-chart',
+                'data-altair': 'true',
+                'data-altair-spec': escapedContent,
+                ...(attributes.width && { 'data-width': attributes.width }),
+                ...(attributes.height && { 'data-height': attributes.height })
+              }
+              
+              // Replace children with a placeholder
+              node.children = [{
+                type: 'text',
+                value: 'Loading chart...'
+              }]
+              
+            } catch (error) {
+              console.error('Invalid Altair chart JSON:', error)
+              console.error('Content was:', content)
+              return
+            }
+          }
+        }
+
+        if (!content) {
+          console.error('Altair directive missing chart specification')
+          return
+        }
+      }
+    })
+  }
+}
 
 // For photography collections
 export function getAllPhotoCollections() {
@@ -365,9 +452,14 @@ export function getWritingPostBySlug(slug) {
     // Process markdown content to HTML with GFM support (tables, etc.)
     const processedContent = remark()
       .use(gfm)
-      .use(html)
+      .use(directive)
+      .use(altairDirective)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeStringify)
       .processSync(content)
       .toString();
+
 
     // Return post data with HTML content
     return {
@@ -422,7 +514,11 @@ export function getInformationContent() {
     // Process markdown content to HTML with GFM support (tables, etc.)
     const processedContent = remark()
       .use(gfm)
-      .use(html)
+      .use(directive)
+      .use(altairDirective)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeStringify)
       .processSync(content)
       .toString();
 
