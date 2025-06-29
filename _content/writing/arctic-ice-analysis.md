@@ -69,6 +69,74 @@ print(f"Trend: {trend_slope:.3f} million km²/year (p={significance:.4f})")
 
 *2020-2023 data only
 
+### Trend Visualization
+
+:::altair
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive Arctic Sea Ice September Minimum Extent Decline",
+  "data": {
+    "values": [
+      {"year": 1979, "extent": 7.05, "decade": "1970s", "trend": "baseline"},
+      {"year": 1985, "extent": 7.23, "decade": "1980s", "trend": "stable"},
+      {"year": 1990, "extent": 6.80, "decade": "1990s", "trend": "declining"},
+      {"year": 1995, "extent": 6.52, "decade": "1990s", "trend": "declining"},
+      {"year": 2000, "extent": 6.32, "decade": "2000s", "trend": "accelerating"},
+      {"year": 2005, "extent": 5.63, "decade": "2000s", "trend": "accelerating"},
+      {"year": 2007, "extent": 4.17, "decade": "2000s", "trend": "record low"},
+      {"year": 2010, "extent": 4.90, "decade": "2010s", "trend": "variable"},
+      {"year": 2012, "extent": 3.41, "decade": "2010s", "trend": "record low"},
+      {"year": 2015, "extent": 4.71, "decade": "2010s", "trend": "variable"},
+      {"year": 2018, "extent": 4.71, "decade": "2010s", "trend": "variable"},
+      {"year": 2020, "extent": 3.74, "decade": "2020s", "trend": "continued decline"},
+      {"year": 2022, "extent": 4.16, "decade": "2020s", "trend": "continued decline"}
+    ]
+  },
+  "params": [
+    {
+      "name": "decade_selection",
+      "select": {"type": "point", "fields": ["decade"]},
+      "bind": "legend"
+    }
+  ],
+  "mark": {"type": "line", "strokeWidth": 3, "point": {"size": 100}},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "scale": {"domain": [1975, 2025]}
+    },
+    "y": {
+      "field": "extent",
+      "type": "quantitative",
+      "title": "Sea Ice Extent (10⁶ km²)",
+      "scale": {"domain": [3, 8]}
+    },
+    "color": {
+      "field": "decade",
+      "type": "nominal",
+      "title": "Decade",
+      "scale": {
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
+      }
+    },
+    "opacity": {
+      "condition": {"param": "decade_selection", "value": 1.0},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "year", "type": "quantitative", "title": "Year"},
+      {"field": "extent", "type": "quantitative", "title": "Extent (10⁶ km²)", "format": ".2f"},
+      {"field": "decade", "type": "nominal", "title": "Decade"},
+      {"field": "trend", "type": "nominal", "title": "Period Description"}
+    ]
+  },
+  "width": "container",
+  "height": 400
+}
+:::
+
 ## Feedback Mechanisms
 
 The accelerating ice loss is driven by several positive feedback loops:

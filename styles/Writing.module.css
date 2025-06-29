@@ -209,6 +209,14 @@
     padding: 12px;
     font-size: 14px;
     margin: 20px 0;
+    /* Force horizontal scrolling instead of overflow */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Prevent line breaks in code */
+    white-space: pre;
+    /* Ensure it doesn't break container */
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .postContent blockquote {
@@ -225,6 +233,17 @@
   .postItem {
     font-size: 16px;
   }
+
+  /* Altair chart mobile fixes */
+  .postContent :global(.altair-chart) {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .postContent :global(.altair-chart > div) {
+    min-width: 300px; /* Ensure chart has minimum usable width */
+  }
 }
 
 /* For very small screens */
@@ -240,5 +259,16 @@
   .postContent th,
   .postContent td {
     padding: 6px;
+  }
+
+  .postContent pre {
+    padding: 8px;
+    font-size: 12px;
+    margin: 16px 0;
+  }
+
+  /* Ensure charts are usable on very small screens */
+  .postContent :global(.altair-chart > div) {
+    min-width: 280px;
   }
 }
