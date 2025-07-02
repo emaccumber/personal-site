@@ -1,58 +1,52 @@
-# Personal Website
+# Personal Portfolio Site
 
-A minimal and fast personal website for showcasing photography, videography, and blog content.
+A portfolio website showcasing photography, films, and writing, built with Next.js and MDX.
 
-## Features
+## Architecture
 
-- Photography portfolio
-- Videography showcase
-- Blog (future)
-- Fast performance
-- Simple content management using markdown and JSON files
-- Mobile-responsive design with hamburger menu
-- Media assets served from Backblaze B2
+This site demonstrates a modern, file-based content management approach:
 
-## Getting Started
+**📷 Photography**: JSON-driven photo albums with lightbox galleries  
+**🎬 Films**: Vimeo embeds and interactive moving image albums with frame-by-frame scrubbing  
+**✍️ Writing**: MDX blog posts with interactive Altair data visualizations  
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+### Key Features
 
-## Deployment with Vercel
+- **Static Generation**: Fast, SEO-friendly pages built at compile time
+- **Interactive Charts**: Altair/Vega-Lite visualizations embedded in blog posts
+- **Smart Media Handling**: Local development files, Backblaze B2 CDN in production
+- **Mobile Responsive**: Touch-friendly navigation and adaptive layouts
+- **Dark Mode**: System-aware theme switching with localStorage persistence
 
-This site is configured for deployment with Vercel and uses Backblaze B2 for media storage.
+## Development
 
-### Setting up Backblaze B2
+```bash
+npm install
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Serve production build locally
+```
 
-1. Create a Backblaze B2 account and bucket
-2. Set the bucket to public
-3. Configure CORS settings to allow your domain
-4. Upload media files with the same directory structure as the `public` folder
+## Deployment
 
-### Deploying to Vercel
+Automatically deploys to GitHub Pages via GitHub Actions on push to main branch.
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run the setup script: `chmod +x setup-vercel.sh && ./setup-vercel.sh`
-3. Follow the prompts to link your project and set up environment variables
-4. Deploy to production: `vercel --prod`
+## Content Structure
 
-### Environment Variables
+```
+_content/
+├── photographs/          # Photo album definitions
+│   ├── albums.json      # Album metadata
+│   └── [album].json     # Individual album photos
+├── films/               # Film and moving image content
+│   ├── films.json       # Film registry
+│   └── [film].json      # Film details and clips
+├── writing/             # MDX blog posts
+│   └── *.mdx           # Posts with frontmatter
+└── information/         # About page content
+    └── about.mdx
+```
 
-- `NEXT_PUBLIC_MEDIA_URL`: URL of your Backblaze B2 bucket (e.g., https://your-bucket.s3.us-west-000.backblazeb2.com)
+## Built With AI
 
-## File Structure
-
-- `/components`: React components
-- `/lib`: Utility functions and API
-- `/pages`: Next.js pages
-- `/public`: Static assets for local development
-- `/styles`: CSS modules
-
-## Media URL Handling
-
-All media assets are served from either:
-- The local `/public` folder during development
-- Your Backblaze B2 bucket in production
-
-Media URLs are handled by the `getMediaUrl` utility function, which automatically switches between local and remote sources based on environment.
+The majority of this codebase was developed using [Claude Code](https://claude.ai/code), Anthropic's AI coding assistant. From the initial architecture to the recent migration to MDX and GitHub Pages hosting, Claude helped design and implement the features while maintaining clean, maintainable code.
