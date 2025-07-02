@@ -1,11 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { MDXRemote } from 'next-mdx-remote';
 import styles from '@/styles/Home.module.css';
 import writingStyles from '@/styles/Writing.module.css';
 import Header from '@/components/Header';
-import AltairRenderer from '@/components/AltairRenderer';
-import { getAllWritingPosts, getWritingPostBySlug } from '@/lib/api';
+import AltairChart from '@/components/AltairChart';
+import { getWritingPostBySlug, getAllWritingSlugs } from '@/lib/mdx';
+
+const components = {
+  AltairChart,
+};
 
 export default function Post({ post }) {
   const router = useRouter();
@@ -36,19 +41,17 @@ export default function Post({ post }) {
             <p className={writingStyles.postDate}>{post.date}</p>
           </header>
 
-          <div
-            className={writingStyles.postContent}
-            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-          />
+          <div className={writingStyles.postContent}>
+            <MDXRemote {...post.content} components={components} />
+          </div>
         </article>
-        <AltairRenderer />
       </main>
     </div>
   );
 }
 
 export async function getStaticProps({ params }) {
-  const post = getWritingPostBySlug(params.slug);
+  const post = await getWritingPostBySlug(params.slug);
   
   if (!post) {
     return {
@@ -62,11 +65,11 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllWritingPosts();
+  const slugs = await getAllWritingSlugs();
   
   return {
-    paths: posts.map((post) => ({
-      params: { slug: post.slug }
+    paths: slugs.map((slug) => ({
+      params: { slug }
     })),
     fallback: false
   };

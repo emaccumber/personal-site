@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'http',
@@ -20,8 +21,9 @@ const nextConfig = {
         : [])
     ],
   },
-  // Enable static exports for better performance
-  output: 'standalone',
+  // Enable static exports for GitHub Pages
+  output: 'export',
+  trailingSlash: true,
 }
 
-module.exports = nextConfig
+export default nextConfig

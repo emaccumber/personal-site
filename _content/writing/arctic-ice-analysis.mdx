@@ -71,8 +71,7 @@ print(f"Trend: {trend_slope:.3f} million km²/year (p={significance:.4f})")
 
 ### Trend Visualization
 
-:::altair
-{
+<AltairChart spec={{
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Interactive Arctic Sea Ice September Minimum Extent Decline",
   "data": {
@@ -134,8 +133,7 @@ print(f"Trend: {trend_slope:.3f} million km²/year (p={significance:.4f})")
   },
   "width": "container",
   "height": 400
-}
-:::
+}} />
 
 ## Feedback Mechanisms
 

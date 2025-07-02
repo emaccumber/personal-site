@@ -24,7 +24,7 @@ export default function Information({ title, contentHtml }) {
       <main className={styles.contentContainer}>
         <div className={styles.bioContainer}>
           <h1 className={styles.bioTitle}>{title}</h1>
-          <div
+          <div 
             className={styles.bioContent}
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
@@ -37,7 +37,6 @@ export default function Information({ title, contentHtml }) {
 export function getStaticProps() {
   try {
     console.log('Fetching information content...');
-    // Remove await since we changed getInformationContent to be synchronous
     const informationContent = getInformationContent();
     console.log('Received information content:', informationContent);
 
@@ -47,7 +46,7 @@ export function getStaticProps() {
       return {
         props: {
           title: 'About Ethan MacCumber',
-          contentHtml: '<p>Content could not be loaded.</p>'
+          contentHtml: 'Content could not be loaded.'
         }
       };
     }
@@ -55,7 +54,7 @@ export function getStaticProps() {
     return {
       props: {
         title: informationContent.title || 'About Ethan MacCumber',
-        contentHtml: informationContent.contentHtml || '<p>Content could not be loaded.</p>'
+        contentHtml: informationContent.content || 'Content could not be loaded.'
       }
     };
   } catch (error) {
@@ -63,7 +62,7 @@ export function getStaticProps() {
     return {
       props: {
         title: 'About Ethan MacCumber',
-        contentHtml: '<p>An error occurred while loading the content.</p>'
+        contentHtml: 'An error occurred while loading the content.'
       }
     };
   }

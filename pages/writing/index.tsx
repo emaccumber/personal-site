@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import writingStyles from '@/styles/Writing.module.css';
 import Header from '@/components/Header';
-import { getAllWritingPosts } from '@/lib/api';
+import { getWritingPosts } from '@/lib/mdx';
 import Link from 'next/link';
 
 export default function Writing({ posts }) {
@@ -38,19 +38,7 @@ export default function Writing({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = getAllWritingPosts();
-  
-  // Sort posts by date (newest first) - handle invalid dates gracefully
-  posts.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    
-    // If either date is invalid, put it at the end
-    if (isNaN(dateA.getTime())) return 1;
-    if (isNaN(dateB.getTime())) return -1;
-    
-    return dateB.getTime() - dateA.getTime();
-  });
+  const posts = await getWritingPosts();
   
   return {
     props: { posts }
