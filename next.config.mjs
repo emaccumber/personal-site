@@ -24,6 +24,9 @@ const nextConfig = {
   // Enable static exports for GitHub Pages
   output: 'export',
   trailingSlash: true,
+  // Configure base path for GitHub Pages repository hosting
+  basePath: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site/' : '',
 }
 
 export default nextConfig
