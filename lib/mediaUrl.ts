@@ -18,6 +18,12 @@ export function getMediaUrl(path: string): string {
     return `${process.env.NEXT_PUBLIC_MEDIA_URL}/${cleanPath}`;
   }
   
+  // For GitHub Pages, add the base path for repository hosting
+  if (process.env.NODE_ENV === 'production') {
+    const basePath = '/personal-site';
+    return `${basePath}${path}`;
+  }
+  
   // Otherwise, return the path as-is for local development
   // This assumes images are in the public folder
   return path;
